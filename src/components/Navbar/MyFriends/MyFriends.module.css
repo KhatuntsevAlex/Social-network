@@ -1,0 +1,18 @@
+.item a {
+  color: white;
+  text-decoration: none;
+  font-size: 10px;
+}
+
+.item .activeLink {
+  color: gold;
+}
+
+.item img {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+  margin-top: 10px;
+}
+
+

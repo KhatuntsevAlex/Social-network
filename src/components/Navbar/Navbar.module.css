@@ -1,0 +1,12 @@
+.nav {
+  grid-area: n;
+  background-color: rgba(245, 161, 6, 0.212);
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.myFriends {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; 
+  
+}

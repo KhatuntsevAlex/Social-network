@@ -1,0 +1,20 @@
+.item a {
+  color: white;
+  text-decoration: none;
+}
+
+.item .activeLink {
+  color: gold;
+}
+
+.item img {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+  margin-top: 10px;
+  vertical-align: middle;
+}
+
+.navTxt {
+  vertical-align: -8px;
+}
