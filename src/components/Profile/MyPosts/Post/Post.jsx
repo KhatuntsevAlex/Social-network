@@ -3,8 +3,11 @@ import s from "./Post.module.css";
 
 const Post = (props) => {
 
-  let dellPost = () => {
-    props.dellPost(props.id);    
+  /* let dellPost = () => {
+    props.onDellPost(props.id);    
+  }; */
+  let dellPost = (e) => {
+    props.onDellPost(e.target.id);    
   };
 
   return (

@@ -11,12 +11,13 @@ const MyPosts = (props) => {
       message={p.message}
       likesCount={p.likesCount}
       imgSrc={p.imgSrc}
+      onDellPost={props.dellPost}
     />);
   // метод .map() - это цыкл для массива, который читает по порядку каждый его элемент
 
   let onAddPost = () => {
     props.addPost();
-  }
+  }  
 
   let onNewPostChange = (e) => {
     let text = e.target.value;
