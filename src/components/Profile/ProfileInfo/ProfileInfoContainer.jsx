@@ -11,6 +11,6 @@ let mapDispatchToProps = (dispatch) => {
   return null
 }
 
-const ProfileInfoContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileInfo);
+const ProfileInfoContainer = connect(mapStateToProps, mapDispatchToProps, null, {pure: false})(ProfileInfo);
 
 export default ProfileInfoContainer;

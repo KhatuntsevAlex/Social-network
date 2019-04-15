@@ -20,6 +20,6 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs); 
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps, null, {pure: false})(Dialogs); 
 //вызываем ф-ю коннект, которая возвращает другую функцию, которую мы вызываем вторымидвойными скобками
 export default DialogsContainer;

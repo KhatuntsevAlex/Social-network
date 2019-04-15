@@ -24,6 +24,6 @@ let mapDispatchToProps = (dispatch) => {
   return null
 }
 
-const NavbarContainer = connect(mapStateToProps, mapDispatchToProps)(Navbar)
+const NavbarContainer = connect(mapStateToProps, mapDispatchToProps, null, {pure: false})(Navbar)
 
 export default NavbarContainer;

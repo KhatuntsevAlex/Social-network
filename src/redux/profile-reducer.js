@@ -24,7 +24,7 @@ let initialState = {
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_POST:
+        case ADD_POST: {
             let newPostId = state.posts.length + 1;
             let newPost = {
                 id: newPostId,
@@ -32,18 +32,26 @@ const profileReducer = (state = initialState, action) => {
                 likesCount: 0,
                 imgSrc: ''
             };
-            state.posts.push(newPost);
-            state.newPostText = "";
-            return { ...state };
-        case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newText;
-            return { ...state };
-        case DELL_POST:
-            let postIndex = state.posts.indexOf(action.messageId);
-            state.posts.splice(postIndex, 1);
-            return { ...state };
+            let stateCopy = { ...state };
+            stateCopy.posts = [...state.posts];
+            stateCopy.posts.push(newPost);
+            stateCopy.newPostText = "";
+            return stateCopy;
+        }
+        case UPDATE_NEW_POST_TEXT: {
+            let stateCopy = { ...state };
+            stateCopy.newPostText = action.newText;
+            return stateCopy;
+        }
+        case DELL_POST: {
+            let stateCopy = { ...state };
+            stateCopy.posts = [...state.posts];
+            let postIndex = stateCopy.posts.indexOf(action.messageId);
+            stateCopy.posts.splice(postIndex, 1);
+            return stateCopy;
+        }
         default:
-            return { ...state };
+            return state;
     };
 };
 /* export const addPostActionCreator = () => {
