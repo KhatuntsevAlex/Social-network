@@ -6,6 +6,7 @@ const MyPosts = (props) => {
 
   let post = props.posts.map(p =>
     <Post
+      key={p.id}
       id={p.id}
       message={p.message}
       likesCount={p.likesCount}

@@ -4,8 +4,8 @@ import NavItem from "./NavItem/NavItem";
 import MyFriends from "./MyFriends/MyFriends";
 
 const Navbar = (props) => {
-  let navItems = props.navItems.map(p => <NavItem name={p.name} linkTo={p.linkTo} imgSrc={p.imgSrc} />)
-  let myFriends = props.myFriends.map(p => <MyFriends id = {p.id} name={p.name} avaSrc={p.avaSrc} />)
+  let navItems = props.navItems.map(p => <NavItem key={p.id} name={p.name} linkTo={p.linkTo} imgSrc={p.imgSrc} />)
+  let myFriends = props.myFriends.map(p => <MyFriends key={p.id} id={p.id} name={p.name} avaSrc={p.avaSrc} />)
   return (
     <nav className={s.nav}>
 

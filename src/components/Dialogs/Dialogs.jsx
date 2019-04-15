@@ -7,10 +7,10 @@ const Dialogs = (props) => {
 
     let dialogsPage = props.dialogsPage;
 
-    let dialogsElemets = dialogsPage.dialogs.map(d => <DialogItem id={d.id} name={d.name} avaSrc={d.avaSrc} />);
+    let dialogsElemets = dialogsPage.dialogs.map(d => <DialogItem key={d.id} id={d.id} name={d.name} avaSrc={d.avaSrc} />);
     //метод .map() будет вызывать по порядку элементы из dialogs пока те не закончатся
 
-    let messageElements = dialogsPage.messages.map(m => <Message id={m.id} message={m.message} dispatch={props.dispatch} />);
+    let messageElements = dialogsPage.messages.map(m => <Message key={m.id} id={m.id} message={m.message} dispatch={props.dispatch} />);
 
     let onSendMessageClick = () => {
         props.sendMessage();
