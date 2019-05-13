@@ -68,10 +68,10 @@ const profileReducer = (state = initialState, action) => {
 
 export const addPostActionCreator = () => ({ type: ADD_POST });
 
-export const updateNewPostTextActionCreator = (text) =>
-    ({ type: UPDATE_NEW_POST_TEXT, newText: text });
+export const updateNewPostTextActionCreator = (newText) =>
+    ({ type: UPDATE_NEW_POST_TEXT, newText });
 
-export const dellPostActionCreator = (id) =>
-    ({ type: DELL_POST, messageId: id });
+export const dellPostActionCreator = (messageId) =>
+    ({ type: DELL_POST, messageId });
 
 export default profileReducer;

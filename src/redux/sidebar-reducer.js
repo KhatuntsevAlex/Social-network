@@ -6,6 +6,7 @@ let initialState = {
         { id: 3, name: 'News', linkTo: '/news', imgSrc: 'https://previews.123rf.com/images/bryljaev/bryljaev1303/bryljaev130300006/18307781-newspaper-icon.jpg' },
         { id: 4, name: 'Music', linkTo: '/music', imgSrc: 'http://s1.iconbird.com/ico/2013/9/446/w512h5121380376577FlurryGoogleMusic.png' },
         { id: 5, name: 'Settings', linkTo: '/settings', imgSrc: 'https://www.iconsearch.ru/uploads/icons/humano2/128x128/cog-icon-2-48x48.png' },
+        { id: 6, name: 'Users', linkTo: '/users', imgSrc: 'http://static1.vigbo.com/u9652/33828/blog/2670320/895310/14552183/1000-gophotoweb-4cc33d15da8ffc17bd59368fc58aa81f.png' },
     ],
     myFriends: [
         { id: 2, name: 'Юра', avaSrc: 'https://whatsism.com/uploads/posts/2018-07/1530544023_n6fgwzftnvg.jpg' },

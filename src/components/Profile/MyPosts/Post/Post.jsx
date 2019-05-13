@@ -6,9 +6,9 @@ const Post = (props) => {
   /* let dellPost = () => {
     props.onDellPost(props.id);    
   }; */
-  let dellPost = (e) => {
+  /* let dellPost = (e) => {
     props.onDellPost(e.target.id);    
-  };
+  }; */
 
   return (
     <div className={s.item}>
@@ -18,7 +18,7 @@ const Post = (props) => {
         <span>Like</span>  {props.likesCount}
       </div>
       <div>
-        <button id={props.id} onClick={dellPost}>Удалить пост</button>
+        <button id={props.id} onClick={() => {props.onDellPost(props.id)}}>Удалить пост</button>
       </div>
     </div >
   );
