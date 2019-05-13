@@ -5,7 +5,7 @@ const SET_USERS = 'SET-USERS';
 
 let initialState = {
     users: [
-        {
+        /* {
             id: 1,
             followed: true,
             fullName: 'Alex',
@@ -36,7 +36,7 @@ let initialState = {
             status: "I'm looking for a job!",
             location: { city: 'Borispol', country: 'Ukraine' },
             userPhoto: "https://i.pinimg.com/736x/37/95/3f/37953f57eba839c5f20e91558695e77a.jpg"
-        },
+        } */
     ]
 };
 

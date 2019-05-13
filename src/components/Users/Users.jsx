@@ -1,51 +1,60 @@
 import React from "react"
 import s from "./Users.module.css"
+import * as axios from "axios"
+import userPhoto from "../../assets/images/userLogo.png"
+
 
 let Users = (props) => {
 
-    if (props.users.length === 0)
-        props.setUsers([
-            {
-                id: 1,
-                followed: true,
-                fullName: 'Alex',
-                status: "I'm looking for a job!",
-                location: { city: 'Kiev', country: 'Ukraine' },
-                userPhoto: "https://i.pinimg.com/736x/37/95/3f/37953f57eba839c5f20e91558695e77a.jpg"
-            },
-            {
-                id: 2,
-                followed: true,
-                fullName: 'Dima',
-                status: "I'm looking for a job!",
-                location: { city: 'Kharkiv', country: 'Ukraine' },
-                userPhoto: "https://i.pinimg.com/736x/37/95/3f/37953f57eba839c5f20e91558695e77a.jpg"
-            },
-            {
-                id: 3,
-                followed: false,
-                fullName: 'Leon',
-                status: "I'm looking for a job!",
-                location: { city: 'Chernivtsi', country: 'Ukraine' },
-                userPhoto: "https://i.pinimg.com/736x/37/95/3f/37953f57eba839c5f20e91558695e77a.jpg"
-            },
-            {
-                id: 4,
-                followed: false,
-                fullName: 'DonDon',
-                status: "I'm looking for a job!",
-                location: { city: 'Borispol', country: 'Ukraine' },
-                userPhoto: "https://i.pinimg.com/736x/37/95/3f/37953f57eba839c5f20e91558695e77a.jpg"
-            }
-        ]
-        );
+    if (props.users.length === 0) {
+        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+
+            props.setUsers(response.data.items
+                /* [
+                {
+                    id: 1,
+                    followed: true,
+                    fullName: 'Alex',
+                    status: "I'm looking for a job!",
+                    location: { city: 'Kiev', country: 'Ukraine' },
+                    userPhoto: "https://i.pinimg.com/736x/37/95/3f/37953f57eba839c5f20e91558695e77a.jpg"
+                },
+                {
+                    id: 2,
+                    followed: true,
+                    fullName: 'Dima',
+                    status: "I'm looking for a job!",
+                    location: { city: 'Kharkiv', country: 'Ukraine' },
+                    userPhoto: "https://i.pinimg.com/736x/37/95/3f/37953f57eba839c5f20e91558695e77a.jpg"
+                },
+                {
+                    id: 3,
+                    followed: false,
+                    fullName: 'Leon',
+                    status: "I'm looking for a job!",
+                    location: { city: 'Chernivtsi', country: 'Ukraine' },
+                    userPhoto: "https://i.pinimg.com/736x/37/95/3f/37953f57eba839c5f20e91558695e77a.jpg"
+                },
+                {
+                    id: 4,
+                    followed: false,
+                    fullName: 'DonDon',
+                    status: "I'm looking for a job!",
+                    location: { city: 'Borispol', country: 'Ukraine' },
+                    userPhoto: "https://i.pinimg.com/736x/37/95/3f/37953f57eba839c5f20e91558695e77a.jpg"
+                }
+            ] */
+            );
+        });
+
+    }
 
     return (
         <div className={s.users}>
             {props.users.map(u => <div key={u.id}>
                 <span>
                     <div>
-                        <img src={u.userPhoto} className={s.userPhoto} />
+                        <img src={u.photos.small != null ? u.photos.small : userPhoto} className={s.userPhoto} />
                     </div>
                     <div>
                         {u.followed ?
@@ -55,12 +64,12 @@ let Users = (props) => {
                 </span>
                 <span>
                     <span>
-                        <div>{u.fullName}</div>
+                        <div>{u.name/* fullName */}</div>
                         <div>{u.status}</div>
                     </span>
                     <span>
-                        <div>{u.location.country}</div>
-                        <div>{u.location.city}</div>
+                        <div>{'u.location.country'}</div>
+                        <div>{'u.location.city'}</div>
                     </span>
                 </span>
             </div>)
