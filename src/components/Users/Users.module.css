@@ -3,5 +3,6 @@
 }
 
 .userPhoto {
-    width: 100px;    
+    width: 100px;
+    border-radius: 50%;    
 }
