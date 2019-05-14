@@ -6,12 +6,7 @@ import userPhoto from "../../assets/images/userLogo.png"
 
 class Users extends React.Component {
     /* constructor(props){super(props)} */ //если делегирует только пропсы то можно конструктор не писать
-    constructor(props){//конструктор будет вызван один раз пока компонента жива, соответственно условия для запроса ставить не нужно
-        super(props);
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response/*ответ от сервера*/ => {
-            this.props.setUsers(response.data.items);//тут смотрим через дебагер и.т.п что нам нужно и что приходит с сервака
-        });
-    }
+    
     /* getUsers = () => {
         if (this.props.users.length === 0) {
             axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
@@ -19,6 +14,12 @@ class Users extends React.Component {
             });
         }
     } */
+
+    componentDidMount(){//метд жизненного цикла - происходит один раз
+        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+            this.props.setUsers(response.data.items);
+        });
+    }
 
     render() {
         return (
