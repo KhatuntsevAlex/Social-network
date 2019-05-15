@@ -4,78 +4,68 @@ import * as axios from "axios"
 import userPhoto from "../../assets/images/userLogo.png"
 
 
-let Users = (props) => {
+class Users extends React.Component {
+    /* constructor(props){super(props)} */ //если делегирует только пропсы то можно конструктор не писать
 
-    if (props.users.length === 0) {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+    /* getUsers = () => {
+        if (this.props.users.length === 0) {
+            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+                this.props.setUsers(response.data.items);
+            });
+        }
+    } */
 
-            props.setUsers(response.data.items
-                /* [
-                {
-                    id: 1,
-                    followed: true,
-                    fullName: 'Alex',
-                    status: "I'm looking for a job!",
-                    location: { city: 'Kiev', country: 'Ukraine' },
-                    userPhoto: "https://i.pinimg.com/736x/37/95/3f/37953f57eba839c5f20e91558695e77a.jpg"
-                },
-                {
-                    id: 2,
-                    followed: true,
-                    fullName: 'Dima',
-                    status: "I'm looking for a job!",
-                    location: { city: 'Kharkiv', country: 'Ukraine' },
-                    userPhoto: "https://i.pinimg.com/736x/37/95/3f/37953f57eba839c5f20e91558695e77a.jpg"
-                },
-                {
-                    id: 3,
-                    followed: false,
-                    fullName: 'Leon',
-                    status: "I'm looking for a job!",
-                    location: { city: 'Chernivtsi', country: 'Ukraine' },
-                    userPhoto: "https://i.pinimg.com/736x/37/95/3f/37953f57eba839c5f20e91558695e77a.jpg"
-                },
-                {
-                    id: 4,
-                    followed: false,
-                    fullName: 'DonDon',
-                    status: "I'm looking for a job!",
-                    location: { city: 'Borispol', country: 'Ukraine' },
-                    userPhoto: "https://i.pinimg.com/736x/37/95/3f/37953f57eba839c5f20e91558695e77a.jpg"
-                }
-            ] */
-            );
+    componentDidMount() {//метд жизненного цикла - происходит один раз
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+            this.props.setUsers(response.data.items);
+            this.props.setTotalCount(response.data.totalCount);
         });
-
+    }
+    onPageChanged = (p) => {
+        this.props.setCurrentPage(p);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`).then(response => {
+            this.props.setUsers(response.data.items);
+        });
     }
 
-    return (
-        <div className={s.users}>
-            {props.users.map(u => <div key={u.id}>
-                <span>
-                    <div>
-                        <img src={u.photos.small != null ? u.photos.small : userPhoto} className={s.userPhoto} />
-                    </div>
-                    <div>
-                        {u.followed ?
-                            <button onClick={() => { props.unfollow(u.id) }}>Unfollow</button> :
-                            <button onClick={() => { props.follow(u.id) }}>Follow</button>}
-                    </div>
-                </span>
-                <span>
+    render() {
+        let pageCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
+        let pages = [];
+        for (let i = 1; i <= pageCount; i++) {
+            pages.push(i);
+        }
+        return (
+            <div className={s.users}>
+                {pages.map(p => {
+                    return <span className={this.props.currentPage===p && s.selectedPage} onClick={()=>this.onPageChanged(p)}>{p}</span>
+                })}
+                {this.props.users.map(u => <div key={u.id}>
                     <span>
-                        <div>{u.name/* fullName */}</div>
-                        <div>{u.status}</div>
+                        <div>
+                            <img src={u.photos.small != null ? u.photos.small : userPhoto} className={s.userPhoto} />
+                        </div>
+                        <div>
+                            {u.followed ?
+                                <button onClick={() => { this.props.unfollow(u.id) }}>Unfollow</button> :
+                                <button onClick={() => { this.props.follow(u.id) }}>Follow</button>}
+                        </div>
                     </span>
                     <span>
-                        <div>{'u.location.country'}</div>
-                        <div>{'u.location.city'}</div>
+                        <span>
+                            <div>{u.name/* fullName */}</div>
+                            <div>{u.status}</div>
+                        </span>
+                        <span>
+                            <div>{'u.location.country'}</div>
+                            <div>{'u.location.city'}</div>
+                        </span>
                     </span>
-                </span>
-            </div>)
-            }
-        </div>
-    );
+                </div>)
+                }
+            </div>
+            /* </div> */
+        );
+    }
 }
 
 export default Users
