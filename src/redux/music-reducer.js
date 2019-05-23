@@ -1,9 +1,7 @@
 import a from '../assets/music/Black_Strobe_I_am_a_man.mp3'
 import b from '../assets/music/Alan_Walker_-_Faded.mp3'
 import c from '../assets/music/Andra_&_Mara_-_Sweet_Dreams.mp3'
-const ADD_POST = 'ADD-POST';
-const DELL_POST = 'DELL-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+
 
 
 let initialState = {
