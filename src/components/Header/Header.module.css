@@ -1,10 +1,16 @@
+.header {
+  grid-area: h;
+  background-color: rgb(90, 88, 88);;
+  border-radius: 20px;
+}
+
 .header img {
   height: 60px;
   border-radius: 20px 0px 0px 20px;
 }
 
-.header {
-  grid-area: h;
-  background-color: rgba(245, 161, 6, 0.212);
-  border-radius: 20px;
+.loginBlock {
+  float: right;
+  line-height: 60px;
+  margin-right: 10px;
 }

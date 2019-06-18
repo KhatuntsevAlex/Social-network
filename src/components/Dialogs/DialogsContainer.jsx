@@ -1,4 +1,4 @@
-import { sendMessageActionCreator, updateNewMessageTextActionCreator } from "../../redux/dialogs-reducer";
+import { sendMessage, updateNewMessageText } from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import { connect } from "react-redux";
 
@@ -8,7 +8,7 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
+/* let mapDispatchToProps = (dispatch) => {
     return {
         updateNewMessageText: (text) => {
             let action = updateNewMessageTextActionCreator(text);
@@ -18,8 +18,12 @@ let mapDispatchToProps = (dispatch) => {
             dispatch(sendMessageActionCreator());
         }
     }
-}
+} */
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps, null, {pure: false})(Dialogs); 
-//вызываем ф-ю коннект, которая возвращает другую функцию, которую мы вызываем вторымидвойными скобками
+//or
+
+let mapDispatchToProps = { updateNewMessageText, sendMessage, }
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps, null, { pure: false })(Dialogs);
+
 export default DialogsContainer;

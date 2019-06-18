@@ -3,13 +3,6 @@ import s from "./Post.module.css";
 
 const Post = (props) => {
 
-  /* let dellPost = () => {
-    props.onDellPost(props.id);    
-  }; */
-  /* let dellPost = (e) => {
-    props.onDellPost(e.target.id);    
-  }; */
-
   return (
     <div className={s.item}>
       <img src={props.imgSrc} alt="..." />
@@ -18,7 +11,12 @@ const Post = (props) => {
         <span>Like</span>  {props.likesCount}
       </div>
       <div>
-        <button id={props.id} onClick={() => {props.onDellPost(props.id)}}>Удалить пост</button>
+        {/* <button id={props.id} onClick={() => {props.onDellPost(props.id)}}>Удалить</button> */}
+        {/* <nav className="navbar navbar-light bg-light"> */}
+          {/* <form className="form-inline"> */}           
+            <button id={props.id} onClick={() => {props.onDellPost(props.id)}} className="btn btn-sm btn-outline-secondary" type="button">Удалить</button>
+          {/* </form> */}
+        {/* </nav> */}
       </div>
     </div >
   );

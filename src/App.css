@@ -3,16 +3,16 @@
   width: 1200px;
   margin: auto;
 
-  grid-template-areas: /*тут разметка грида где что будет*/
-    "h h" /*1 строка - 2 колонки занимает хэдер*/
-    "n c"; /*2 строка - ...*/
-  grid-template-rows: 60px 1fr; /*сколько строк внутри грида (2)*/
-  grid-template-columns: 2fr 10fr; /*сколько колонок внутри грида (2)*/
-  grid-gap: 10px; /*расстояние между элементами*/
+  grid-template-areas:
+    "h h"
+    "n c";
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+  grid-gap: 10px;
 }
 
 .app-wrapper-content {  
     grid-area: c;
-    background-color: rgba(119, 169, 192, 0.295);
+    background-color: rgb(119, 169, 192);
     border-radius: 20px;
 }

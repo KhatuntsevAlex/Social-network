@@ -16,13 +16,13 @@
     border-radius: 20px;
     padding: 10px;
     font-size: 16px;
-    background-color: lightgrey;
+    /* background-color: lightgrey; */
     resize: none;    
 }
 
-.postsBlock button {
+/* .postsBlock button {
     margin-left: 20px;
     width: 150px;
     height: 25px;
     border-radius: 12.5px;
-}
+} */

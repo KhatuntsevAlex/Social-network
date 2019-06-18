@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 let mapStateToProps = (state) => {
   return {
-    myProfile: state.profilePage.myProfile
+    profile: state.profilePage.profile
   }
 }
 

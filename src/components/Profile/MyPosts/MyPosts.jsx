@@ -17,7 +17,7 @@ const MyPosts = (props) => {
 
   let onAddPost = () => {
     props.addPost();
-  }  
+  }
 
   let onNewPostChange = (e) => {
     let text = e.target.value;
@@ -29,16 +29,22 @@ const MyPosts = (props) => {
     <div className={s.postsBlock}>
       <h3>My post</h3>
       <div>
-        <div>
+        <div class="md-form">
           <textarea
+            id="form10"
+            class="md-textarea form-control"
+            rows="3"
             onChange={onNewPostChange}
             type="text"
             value={props.newPostText}
             placeholder="Введите текст"
+            required
           />
+          <label for="form10"></label>
         </div>
         <div>
-          <button id={props.id} onClick={onAddPost}>Добавить пост</button>
+          {/*  <button id={props.id} onClick={onAddPost}>Добавить пост</button> */}
+          <button className="btn btn-outline-success" type="button" id={props.id} onClick={onAddPost}>Добавить пост</button>
         </div>
       </div>
       <div className={s.posts}>

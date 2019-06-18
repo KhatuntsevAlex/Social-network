@@ -20,13 +20,14 @@
     border-radius: 20px;
     padding: 10px;
     font-size: 16px;
-    background-color: lightgrey;
+    /* background-color: lightgrey; */
     resize: none;
 }
-.newMessage button {
+
+/* .newMessage button {
     margin-left: 20px; 
     width: 150px;
     height: 25px;
     font-size: 12px;
     border-radius: 12.5px;
-}
+} */

@@ -8,7 +8,6 @@ const Dialogs = (props) => {
     let dialogsPage = props.dialogsPage;
 
     let dialogsElemets = dialogsPage.dialogs.map(d => <DialogItem key={d.id} id={d.id} name={d.name} avaSrc={d.avaSrc} />);
-    //метод .map() будет вызывать по порядку элементы из dialogs пока те не закончатся
 
     let messageElements = dialogsPage.messages.map(m => <Message key={m.id} id={m.id} message={m.message} dispatch={props.dispatch} />);
 
@@ -17,7 +16,7 @@ const Dialogs = (props) => {
     }
 
     let onNewMessageChange = (e) => {
-        let text = e.target.value; //e - event, e.target - event объекта, в котором вызвалась данная функция
+        let text = e.target.value;
         props.updateNewMessageText(text);
     };
 
@@ -29,16 +28,33 @@ const Dialogs = (props) => {
             <div className={s.messages}>
                 <div>{messageElements}</div>
                 <div className={s.newMessage}>
-                    <div>
+                    {/*  <div>
                         <textarea
                             onChange={onNewMessageChange}
                             value={props.dialogsPage.newMessageText}
                             type="text"
                             placeholder="Введите сообщение"
+                            required
                         />
                     </div>
                     <div>
                         <button onClick={onSendMessageClick}>Отправить сообщение</button>
+                    </div> */}
+                    <div class="md-form">
+                        <textarea
+                            id="form10"
+                            class="md-textarea form-control"
+                            rows="3"
+                            onChange={onNewMessageChange}
+                            type="text"
+                            value={props.dialogsPage.newMessageText}
+                            placeholder="Введите сообщение"
+                            required
+                        />
+                        <label for="form10"></label>
+                    </div>
+                    <div>
+                        <button className="btn btn-outline-success" type="button" onClick={onSendMessageClick}>Отправить сообщение</button>
                     </div>
                 </div>
             </div>

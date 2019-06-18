@@ -1,15 +1,29 @@
-const ADD_POST = 'ADD-POST';
-const DELL_POST = 'DELL-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const ADD_POST = 'ADD_POST';
+const DELL_POST = 'DELL_POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 let initialState = {
-    myProfile: {
+    profile: {
         id: 1,
-        name: 'Саша',
+        fullName: 'Саша',
         likesCount: 0,
-        description: '',
-        profImgSrc: 'https://21foto.ru/wp-content/uploads/2015/11/20080511_3449-Panorama.jpg',
-        avaSrc: 'http://i.ru-phone.org/userfiles/walls/108/1086374/vxrafhkv.jpg',
+        aboutMe: '',
+        photos: {
+            small: 'http://i.ru-phone.org/userfiles/walls/108/1086374/vxrafhkv.jpg',
+            large: 'https://21foto.ru/wp-content/uploads/2015/11/20080511_3449-Panorama.jpg',
+        },
+        contacts: {
+            facebook: '',
+            github: '',
+            instagram: '',
+            mainLink: '',
+            twitter: '',
+            vk: '',
+            website: '',
+            youtube: '',
+        },
+        lookingForAJobDescription: '',
     },
 
     posts: [
@@ -46,13 +60,16 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 newPostText: action.newText
             };
+        case SET_USER_PROFILE:
+            return {
+                ...state,
+                profile: action.profile
+            };
         case DELL_POST:
             stateCopy = {
                 ...state,
                 posts: [...state.posts]
-            };
-            //let postIndex = stateCopy.posts.map(e=>e.id).indexOf(action.messageId);
-            //или
+            };            
             let postIndex = stateCopy.posts.findIndex(message => message.id === action.messageId);
             stateCopy.posts.splice(postIndex, 1);
             return stateCopy;
@@ -60,18 +77,16 @@ const profileReducer = (state = initialState, action) => {
             return state;
     };
 };
-/* export const addPostActionCreator = () => {
-  return {type: ADD_POST}  
-}; */
 
-//если ф-я просто возвращает что-то, то можна писать без ретурна но обернуть в ():
+export const addPost = () => ({ type: ADD_POST });
 
-export const addPostActionCreator = () => ({ type: ADD_POST });
-
-export const updateNewPostTextActionCreator = (newText) =>
+export const updateNewPostText = (newText) =>
     ({ type: UPDATE_NEW_POST_TEXT, newText });
 
-export const dellPostActionCreator = (messageId) =>
+export const dellPost = (messageId) =>
     ({ type: DELL_POST, messageId });
+
+export const setUserProfile = (profile) =>
+    ({ type: SET_USER_PROFILE, profile });
 
 export default profileReducer;
