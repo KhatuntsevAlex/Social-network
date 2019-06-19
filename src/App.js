@@ -9,7 +9,7 @@ import NavbarContainer from "./components/Navbar/NavbarContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import MusicContainer from "./components/Music/MusicContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
-import Login from "./Login/Login";
+import Login from "./components/Login/Login";
 
 /* Для перехода между частями своего
   приложения заключаем весь ретурн
@@ -28,7 +28,7 @@ const App = () => {
       <HeaderContainer />
       <NavbarContainer />
       <div className="app-wrapper-content">
-        <Redirect to="/profile" />
+        {/* <Redirect to="/profile" /> */}
         <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
         <Route path="/dialogs" render={() => <DialogsContainer />} />
         <Route path="/users" render={() => <UsersContainer />} />

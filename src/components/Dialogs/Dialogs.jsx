@@ -7,9 +7,13 @@ const Dialogs = (props) => {
 
     let dialogsPage = props.dialogsPage;
 
-    let dialogsElemets = dialogsPage.dialogs.map(d => <DialogItem key={d.id} id={d.id} name={d.name} avaSrc={d.avaSrc} />);
+    let dialogsElemets = dialogsPage.dialogs.map(d =>
+        <DialogItem key={d.id} id={d.id} name={d.name} avaSrc={d.avaSrc} />
+    );
 
-    let messageElements = dialogsPage.messages.map(m => <Message key={m.id} id={m.id} message={m.message} dispatch={props.dispatch} />);
+    let messageElements = dialogsPage.messages.map(m =>
+        <Message key={m.id} id={m.id} message={m.message} dispatch={props.dispatch} />
+    );
 
     let onSendMessageClick = () => {
         props.sendMessage();
@@ -28,18 +32,6 @@ const Dialogs = (props) => {
             <div className={s.messages}>
                 <div>{messageElements}</div>
                 <div className={s.newMessage}>
-                    {/*  <div>
-                        <textarea
-                            onChange={onNewMessageChange}
-                            value={props.dialogsPage.newMessageText}
-                            type="text"
-                            placeholder="Введите сообщение"
-                            required
-                        />
-                    </div>
-                    <div>
-                        <button onClick={onSendMessageClick}>Отправить сообщение</button>
-                    </div> */}
                     <div class="md-form">
                         <textarea
                             id="form10"
@@ -54,7 +46,13 @@ const Dialogs = (props) => {
                         <label for="form10"></label>
                     </div>
                     <div>
-                        <button className="btn btn-outline-success" type="button" onClick={onSendMessageClick}>Отправить сообщение</button>
+                        <button
+                            className="btn btn-outline-success"
+                            type="button"
+                            onClick={onSendMessageClick}
+                        >
+                            Отправить сообщение
+                        </button>
                     </div>
                 </div>
             </div>

@@ -1,15 +1,9 @@
 import ProfileInfo from "./ProfileInfo";
 import { connect } from "react-redux";
 
-let mapStateToProps = (state) => {
-  return {
-    profile: state.profilePage.profile
-  }
-}
+let mapStateToProps = state => ({profile: state.profilePage.profile})
 
-let mapDispatchToProps = (dispatch) => {
-  return null
-}
+let mapDispatchToProps = {}
 
 const ProfileInfoContainer = connect(mapStateToProps, mapDispatchToProps, null, {pure: false})(ProfileInfo);
 
