@@ -44,7 +44,7 @@ const MyPosts = (props) => {
         </div>
         <div>
           {/*  <button id={props.id} onClick={onAddPost}>Добавить пост</button> */}
-          <button className="btn btn-outline-success" type="button" id={props.id} onClick={onAddPost}>Добавить пост</button>
+          <button className="btn btn-success" type="button" id={props.id} onClick={onAddPost}>Добавить пост</button>
         </div>
       </div>
       <div className={s.posts}>

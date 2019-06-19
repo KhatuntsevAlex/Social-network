@@ -1,3 +1,8 @@
+.item { 
+  margin-bottom: 10px;
+  white-space: nowrap;
+}
+
 .item a {
   color: white;
   text-decoration: none;
@@ -11,10 +16,11 @@
   width: 30px;
   height: 30px;
   margin-right: 5px;
-  margin-top: 10px;
   vertical-align: middle;
+  line-height: 30px;
 }
 
 .navTxt {
-  vertical-align: -8px;
+  line-height: 30px;
+  /* vertical-align: -8px; */
 }

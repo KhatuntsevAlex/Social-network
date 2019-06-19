@@ -22,7 +22,7 @@ import Login from "./Login/Login";
   npm i react-router-dom -save
   и потом прописать импорты - смотр1и вверху*/
 
-const App = props => {
+const App = () => {
   return (
     <div className="app-wrapper">
       <HeaderContainer />

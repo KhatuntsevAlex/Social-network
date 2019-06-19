@@ -10,7 +10,7 @@ const MyFriends = (props) => {
     <div className={s.item}>
       <NavLink to={'/' + props.name + props.id} activeClassName={s.activeLink}>
         <img src={props.avaSrc} alt="..." />
-        <span>{props.name}</span>
+        <div className={s.friendName}>{props.name}</div>
       </NavLink>
     </div>
     

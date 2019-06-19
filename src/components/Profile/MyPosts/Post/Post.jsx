@@ -14,7 +14,7 @@ const Post = (props) => {
         {/* <button id={props.id} onClick={() => {props.onDellPost(props.id)}}>Удалить</button> */}
         {/* <nav className="navbar navbar-light bg-light"> */}
           {/* <form className="form-inline"> */}           
-            <button id={props.id} onClick={() => {props.onDellPost(props.id)}} className="btn btn-sm btn-outline-secondary" type="button">Удалить</button>
+            <button id={props.id} onClick={() => {props.onDellPost(props.id)}} className="btn btn-danger btn-sm" type="button">Удалить</button>
           {/* </form> */}
         {/* </nav> */}
       </div>

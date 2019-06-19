@@ -17,7 +17,7 @@ const Header = (props) => {
             </NavLink>
           :
             <NavLink to='/login'>
-              <button className="btn btn-sm btn-outline-secondary" type="button">Login</button>
+              <button className="btn btn-success" type="button">Login</button>
             </NavLink>
         }
 

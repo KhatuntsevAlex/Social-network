@@ -8,7 +8,7 @@ NavLink это тег <a> - а значит в стилях ссылаемся �
 const NavItem = (props) => {
   return (
       <div className={s.item}>
-        <NavLink to={props.linkTo} activeClassName={s.activeLink}>
+        <NavLink to={props.linkTo} className={s.item} activeClassName={s.activeLink}>
           <img src={props.imgSrc} alt="..." />
           <span className={s.navTxt}>{props.name}</span>
         </NavLink>

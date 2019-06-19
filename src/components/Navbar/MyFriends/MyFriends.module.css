@@ -10,10 +10,16 @@
 
 .item img {
   width: 30px;
-  height: 30px;
-  margin-right: 5px;
-  margin-top: 10px;
- /*  border-radius: 50%; */
+  height: 30px; 
+}
+
+.friendName {  
+  text-align: center;
+}
+
+.item {
+  align-self: center;
+  justify-self: center;
 }
 
 

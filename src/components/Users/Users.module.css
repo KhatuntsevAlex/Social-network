@@ -3,10 +3,24 @@
 }
 
 .userPhoto {
-    width: 100px;
-    border-radius: 50%;    
+    width: 110px;
+    border-radius: 50%;
+    border: 10px solid rgb(119, 169, 192);
+    padding: 0;
 }
 
 .selectedPage {
     font-weight: bold;
+}
+
+.follow_unfollowBtn {
+    margin: 0 0 20px 10px ;
+}
+
+.userDescription {
+    white-space: nowrap;
+}
+
+.userDescription div{
+    display: inline-block;
 }
