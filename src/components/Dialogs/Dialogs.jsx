@@ -15,15 +15,6 @@ const Dialogs = (props) => {
         <Message key={m.id} id={m.id} message={m.message} dispatch={props.dispatch} />
     );
 
-    let onSendMessageClick = () => {
-        props.sendMessage();
-    }
-
-    let onNewMessageChange = (e) => {
-        let text = e.target.value;
-        props.updateNewMessageText(text);
-    };
-
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
@@ -37,7 +28,9 @@ const Dialogs = (props) => {
                             id="form10"
                             class="md-textarea form-control"
                             rows="3"
-                            onChange={onNewMessageChange}
+                            onChange={(e) => {
+                                props.updateNewMessageText(e.target.value);
+                            }}
                             type="text"
                             value={props.dialogsPage.newMessageText}
                             placeholder="Введите сообщение"
@@ -49,7 +42,9 @@ const Dialogs = (props) => {
                         <button
                             className="btn btn-outline-success"
                             type="button"
-                            onClick={onSendMessageClick}
+                            onClick={() => {
+                                props.sendMessage()
+                            }}
                         >
                             Отправить сообщение
                         </button>
