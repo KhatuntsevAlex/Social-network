@@ -1,87 +1,85 @@
-const SEND_MESSAGE = "SEND_MESSAGE";
-const UPDATE_NEW_MESSAGE_TEXT = "UPDATE_NEW_MESSAGE_TEXT";
+const SEND_MESSAGE = 'SEND_MESSAGE'
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT'
 
-let initialState = {
+const initialState = {
   dialogs: [
     {
       id: 1,
-      name: "Саша",
-      avaSrc: "http://i.ru-phone.org/userfiles/walls/108/1086374/vxrafhkv.jpg"
+      name: 'Саша',
+      avaSrc: 'http://i.ru-phone.org/userfiles/walls/108/1086374/vxrafhkv.jpg',
     },
     {
       id: 2,
-      name: "Юра",
+      name: 'Юра',
       avaSrc:
-        "https://whatsism.com/uploads/posts/2018-07/1530544023_n6fgwzftnvg.jpg"
+        'https://whatsism.com/uploads/posts/2018-07/1530544023_n6fgwzftnvg.jpg',
     },
     {
       id: 3,
-      name: "Ира",
-      avaSrc: "http://hypeava.ru/uploads/posts/2018-01/1514892492_1.jpg"
+      name: 'Ира',
+      avaSrc: 'http://hypeava.ru/uploads/posts/2018-01/1514892492_1.jpg',
     },
     {
       id: 4,
-      name: "Таня",
+      name: 'Таня',
       avaSrc:
-        "https://bipbap.ru/wp-content/uploads/2017/07/1460128624_youloveit_ru_ledi_bag_i_super_kot_krasivye_lica_avatarki13.png"
+        'https://bipbap.ru/wp-content/uploads/2017/07/1460128624_youloveit_ru_ledi_bag_i_super_kot_krasivye_lica_avatarki13.png',
     },
     {
       id: 5,
-      name: "Валя",
+      name: 'Валя',
       avaSrc:
-        "https://i.pinimg.com/originals/0c/a9/e2/0ca9e28dcb12dc698cfd2beda6d6fa64.jpg"
+        'https://i.pinimg.com/originals/0c/a9/e2/0ca9e28dcb12dc698cfd2beda6d6fa64.jpg',
     },
     {
       id: 6,
-      name: "Виталик",
+      name: 'Виталик',
       avaSrc:
-        "https://bipbap.ru/wp-content/uploads/2017/07/1426228433_iv6tzpo0bia.jpg"
-    }
+        'https://bipbap.ru/wp-content/uploads/2017/07/1426228433_iv6tzpo0bia.jpg',
+    },
   ],
 
   messages: [
-    { id: 1, message: "Hello World!", imgSrc: "" },
-    { id: 2, message: "My name is Alex", imgSrc: "" },
-    { id: 3, message: "I'm learning react.js", imgSrc: "" },
-    { id: 4, message: "I'm learning react.js", imgSrc: "" },
-    { id: 5, message: "I'm learning react.js", imgSrc: "" },
-    { id: 6, message: "I'm learning react.js", imgSrc: "" }
+    { id: 1, message: 'Hello World!', imgSrc: '' },
+    { id: 2, message: 'My name is Alex', imgSrc: '' },
+    { id: 3, message: "I'm learning react.js", imgSrc: '' },
+    { id: 4, message: "I'm learning react.js", imgSrc: '' },
+    { id: 5, message: "I'm learning react.js", imgSrc: '' },
+    { id: 6, message: "I'm learning react.js", imgSrc: '' },
   ],
 
-  newMessageText: ""
-};
+  newMessageText: '',
+}
 
 const dialogsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SEND_MESSAGE:
-      let newMessageId = state.messages.length + 1;
-      let newText = state.newMessageText;
       return {
         ...state,
-        newMessageText: "",
+        newMessageText: '',
         messages: [
           ...state.messages,
           {
-            id: newMessageId,
-            message: newText,
-            imgSrc: ""
-          }
-        ]
-      };
+            id: state.messages.length + 1,
+            message: state.newMessageText,
+            imgSrc: '',
+          },
+        ],
+      }
     case UPDATE_NEW_MESSAGE_TEXT:
       return {
         ...state,
-        newMessageText: action.newText
-      };
+        newMessageText: action.newText,
+      }
     default:
-      return state;
+      return state
   }
-};
-export default dialogsReducer;
+}
+export default dialogsReducer
 
-export const sendMessage = () => ({ type: SEND_MESSAGE });
+export const sendMessage = () => ({ type: SEND_MESSAGE })
 
 export const updateNewMessageText = text => ({
   type: UPDATE_NEW_MESSAGE_TEXT,
-  newText: text
-});
+  newText: text,
+})

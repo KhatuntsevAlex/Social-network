@@ -1,8 +1,8 @@
-import profileReducer from "./profile-reducer";
-import dialogsReducer from "./dialogs-reducer";
-import sidebarReducer from "./sidebar-reducer";
+import profileReducer from './profile-reducer'
+import dialogsReducer from './dialogs-reducer'
+import sidebarReducer from './sidebar-reducer'
 
-let store = {
+const store = {
   _state: {
     profilePage: {
       myProfile: {
@@ -15,13 +15,21 @@ let store = {
       },
 
       posts: [
-        { id: 1, message: 'Hello!', likesCount: 15, imgSrc: "https://www.perunica.ru/uploads/posts/2011-10/1319832745_0_6065c_b70de565_l.jpg" },
-        { id: 2, message: "It's my world!", likesCount: 30, imgSrc: "https://www.b17.ru/foto/uploaded/b69a564c47110acefb8c986f768210ac.jpg" },
-        { id: 3, message: "It's my world!", likesCount: 30, imgSrc: "http://gloria-mur.ru/wp-content/uploads/2017/05/avatar1-740x463.jpg" },
-        { id: 4, message: "It's my world!", likesCount: 30, imgSrc: "https://whatsism.com/uploads/posts/2018-07/1530544023_n6fgwzftnvg.jpg" }
+        {
+          id: 1, message: 'Hello!', likesCount: 15, imgSrc: 'https://www.perunica.ru/uploads/posts/2011-10/1319832745_0_6065c_b70de565_l.jpg',
+        },
+        {
+          id: 2, message: "It's my world!", likesCount: 30, imgSrc: 'https://www.b17.ru/foto/uploaded/b69a564c47110acefb8c986f768210ac.jpg',
+        },
+        {
+          id: 3, message: "It's my world!", likesCount: 30, imgSrc: 'http://gloria-mur.ru/wp-content/uploads/2017/05/avatar1-740x463.jpg',
+        },
+        {
+          id: 4, message: "It's my world!", likesCount: 30, imgSrc: 'https://whatsism.com/uploads/posts/2018-07/1530544023_n6fgwzftnvg.jpg',
+        },
       ],
 
-      newPostText: ''
+      newPostText: '',
     },
 
     dialogsPage: {
@@ -31,7 +39,7 @@ let store = {
         { id: 3, name: 'Ира', avaSrc: 'http://hypeava.ru/uploads/posts/2018-01/1514892492_1.jpg' },
         { id: 4, name: 'Таня', avaSrc: 'https://bipbap.ru/wp-content/uploads/2017/07/1460128624_youloveit_ru_ledi_bag_i_super_kot_krasivye_lica_avatarki13.png' },
         { id: 5, name: 'Валя', avaSrc: 'https://i.pinimg.com/originals/0c/a9/e2/0ca9e28dcb12dc698cfd2beda6d6fa64.jpg' },
-        { id: 6, name: 'Виталик', avaSrc: 'https://bipbap.ru/wp-content/uploads/2017/07/1426228433_iv6tzpo0bia.jpg' }
+        { id: 6, name: 'Виталик', avaSrc: 'https://bipbap.ru/wp-content/uploads/2017/07/1426228433_iv6tzpo0bia.jpg' },
       ],
 
       messages: [
@@ -40,10 +48,10 @@ let store = {
         { id: 3, message: "I'm learning react.js", imgSrc: '' },
         { id: 4, message: "I'm learning react.js", imgSrc: '' },
         { id: 5, message: "I'm learning react.js", imgSrc: '' },
-        { id: 6, message: "I'm learning react.js", imgSrc: '' }
+        { id: 6, message: "I'm learning react.js", imgSrc: '' },
       ],
 
-      newMessageText: ''
+      newMessageText: '',
     },
 
     sidebar: {
@@ -58,30 +66,28 @@ let store = {
         { id: 2, name: 'Юра', avaSrc: 'https://whatsism.com/uploads/posts/2018-07/1530544023_n6fgwzftnvg.jpg' },
         { id: 3, name: 'Ира', avaSrc: 'http://hypeava.ru/uploads/posts/2018-01/1514892492_1.jpg' },
         { id: 4, name: 'Таня', avaSrc: 'https://bipbap.ru/wp-content/uploads/2017/07/1460128624_youloveit_ru_ledi_bag_i_super_kot_krasivye_lica_avatarki13.png' },
-      ]
-    }
+      ],
+    },
   },
 
   _callSubscriber() {
-    console.log('State changed');
+    console.log('State changed')
   },
 
   getState() {
-    return this._state;
+    return this._state
   },
 
   subscribe(observer) {
-    this._callSubscriber = observer; //наблюдатель //
+    this._callSubscriber = observer // наблюдатель //
   },
 
-  dispatch(action) { //action = объект, а значит должно иметь type: 'ADD-POST'
-    this._state.profilePage = profileReducer(this._state.profilePage, action);
-    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
-    this._state.sidebar = sidebarReducer(this._state.sidebar, action);
-    this._callSubscriber(this._state);
-  }
-};
+  dispatch(action) { // action = объект, а значит должно иметь type: 'ADD-POST'
+    this._state.profilePage = profileReducer(this._state.profilePage, action)
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+    this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+    this._callSubscriber(this._state)
+  },
+}
 
-
-export default store;
-
+export default store

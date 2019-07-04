@@ -1,10 +1,16 @@
-import ProfileInfo from "./ProfileInfo";
-import { connect } from "react-redux";
+import { connect } from 'react-redux'
+import ProfileInfo from './ProfileInfo'
+import { updateStatus } from '../../../redux/profile-reducer';
 
-let mapStateToProps = state => ({profile: state.profilePage.profile})
+const mapStateToProps = state => ({
+  profile: state.profilePage.profile,
+  status: state.profilePage.status,
+})
 
-let mapDispatchToProps = {}
+const mapDispatchToProps = {
+  updateStatus,
+}
 
-const ProfileInfoContainer = connect(mapStateToProps, mapDispatchToProps, null, {pure: false})(ProfileInfo);
+const ProfileInfoContainer = connect(mapStateToProps, mapDispatchToProps, null, { pure: false })(ProfileInfo)
 
-export default ProfileInfoContainer;
+export default ProfileInfoContainer

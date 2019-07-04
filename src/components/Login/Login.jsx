@@ -1,14 +1,10 @@
-import React from "react";
-import s from "./Login.module.css";
+import React from 'react'
 
-const Login = () => {
-  return (
-    <div>
-      <h1>
-      Login
-      </h1>
-        
-    </div>
-  );
-};
-export default Login;
+const Login = () => (
+  <div>
+    <h1>
+      {'Login'}
+    </h1>
+  </div>
+)
+export default Login

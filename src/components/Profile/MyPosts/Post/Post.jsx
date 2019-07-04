@@ -1,25 +1,32 @@
-import React from "react";
-import s from "./Post.module.css";
+import React from 'react'
+import s from './Post.module.css'
 
 const Post = (props) => {
-
+  const {
+    imgSrc, message, likesCount,
+    id, dellPost,
+  } = props
   return (
     <div className={s.item}>
-      <img src={props.imgSrc} alt="..." />
-      {props.message}
+      <img src={imgSrc} alt="..." />
+      {message}
       <div>
-        <span>Like</span>  {props.likesCount}
+        <span>Like</span>
+        {' '}
+        {likesCount}
       </div>
       <div>
-        {/* <button id={props.id} onClick={() => {props.onDellPost(props.id)}}>Удалить</button> */}
-        {/* <nav className="navbar navbar-light bg-light"> */}
-          {/* <form className="form-inline"> */}           
-            <button id={props.id} onClick={() => {props.onDellPost(props.id)}} className="btn btn-danger btn-sm" type="button">Удалить</button>
-          {/* </form> */}
-        {/* </nav> */}
+        <button
+          id={id}
+          onClick={() => { dellPost(id) }}
+          className="btn btn-danger btn-sm"
+          type="button"
+        >
+          {'Удалить'}
+        </button>
       </div>
-    </div >
-  );
-};
+    </div>
+  )
+}
 
-export default Post; 
+export default Post
