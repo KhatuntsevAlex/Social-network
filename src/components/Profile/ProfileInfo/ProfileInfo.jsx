@@ -1,9 +1,11 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { updateStatus } from '../../../redux/profile-reducer'
+import Preloader from '../../common/Preloader/Preloader'
 import s from './ProfileInfo.module.css'
-import Preloader from '../../Users/Preloader'
 import ProfileStatus from './ProfileStatus'
 
-const ProfileInfo = ({ profile, status, updateStatus }) => {
+const ProfileInfo = ({ profile, status, ...funcs }) => {
   const contacts = Object.keys(profile.contacts)
     .map(
       key => (
@@ -29,7 +31,7 @@ const ProfileInfo = ({ profile, status, updateStatus }) => {
           alt="..."
         />
         {profile.fullName ? <strong>{profile.fullName}</strong> : null}
-        <ProfileStatus status={status} updateStatus={updateStatus} />
+        <ProfileStatus status={status} updateStatus={funcs.updateStatus} />
         {profile.aboutMe
           ? (
             <p>
@@ -53,4 +55,15 @@ const ProfileInfo = ({ profile, status, updateStatus }) => {
   )
 }
 
-export default ProfileInfo
+const mapStateToProps = state => ({
+  profile: state.profilePage.profile,
+  status: state.profilePage.status,
+})
+
+const mapDispatchToProps = {
+  updateStatus,
+}
+
+const ProfileInfoContainer = connect(mapStateToProps, mapDispatchToProps, null, { pure: false })(ProfileInfo)
+
+export default ProfileInfoContainer

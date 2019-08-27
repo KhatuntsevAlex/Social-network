@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { follow, unfollow, setCurrentPage, getUsers } from '../../redux/users-reducer'
-import Preloader from './Preloader'
 import Users from './Users'
+import Preloader from '../common/Preloader/Preloader'
 
 class UsersContainer extends React.Component {
 
@@ -39,4 +39,4 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = { follow, unfollow, setCurrentPage, getUsers }
 
-export default connect(mapStateToProps, mapDispatchToProps, null, { pure: false })(UsersContainer);
+export default connect(mapStateToProps, mapDispatchToProps, null, { pure: false })(UsersContainer)

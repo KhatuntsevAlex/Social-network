@@ -2,10 +2,8 @@ import { profileAPI } from '../api/api'
 
 const ADD_POST = 'ADD_POST'
 const DELL_POST = 'DELL_POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_STATUS = 'SET_STATUS'
-/* const CHANGE_STATUS = 'CHANGE_STATUS' */
 
 const initialState = {
   profile: {
@@ -57,7 +55,6 @@ const initialState = {
     },
   ],
 
-  newPostText: '',
   status: '',
 }
 
@@ -66,26 +63,19 @@ const profileReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST: {
       const newPostId = state.posts.length + 1
-      const newText = state.newPostText
       return {
         ...state,
-        newPostText: '',
         posts: [
           ...state.posts,
           {
             id: newPostId,
-            message: newText,
+            message: action.text,
             likesCount: 0,
             imgSrc: '',
           },
         ],
       }
-    }
-    case UPDATE_NEW_POST_TEXT:
-      return {
-        ...state,
-        newPostText: action.newText,
-      }
+    }    
     case SET_USER_PROFILE:
       return {
         ...state,
@@ -110,9 +100,7 @@ const profileReducer = (state = initialState, action) => {
   }
 }
 
-export const addPost = () => ({ type: ADD_POST })
-
-export const updateNewPostText = newText => ({ type: UPDATE_NEW_POST_TEXT, newText })
+export const addPost = (text) => ({ type: ADD_POST, text })
 
 export const dellPost = messageId => ({ type: DELL_POST, messageId })
 

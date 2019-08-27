@@ -1,4 +1,12 @@
 .message {
-    padding: 10px;
+  padding: 10px;
 }
 
+.newMessage textarea {
+  width: 250px;
+  height: 100px;
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 16px;
+  resize: none;
+}

@@ -1,11 +1,11 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { addPost, dellPost } from '../../../redux/profile-reducer'
 import s from './MyPosts.module.css'
 import Post from './Post/Post'
+import PostForm from './PostForm'
 
-const MyPosts = (props) => {
-  const {
-    id, posts, dellPost, updateNewPostText, newPostText, addPost,
-  } = props
+const MyPosts = ({ posts, ...funcs }) => {
   const post = posts.map(p => (
     <Post
       key={p.id}
@@ -13,42 +13,17 @@ const MyPosts = (props) => {
       message={p.message}
       likesCount={p.likesCount}
       imgSrc={p.imgSrc}
-      dellPost={dellPost}
+      dellPost={funcs.dellPost}
     />
   ))
 
-  const onNewPostChange = (e) => {
-    const text = e.target.value
-    updateNewPostText(text)
+  const onSubmit = ({ text }) => {
+    funcs.addPost(text)
   }
-
   return (
     <div className={s.postsBlock}>
       <h3>My post</h3>
-      <div>
-        <div className="md-form">
-          <textarea
-            id="form10"
-            className="md-textarea form-control mb-3"
-            rows="3"
-            onChange={onNewPostChange}
-            type="text"
-            value={newPostText}
-            placeholder="Введите текст"
-            required
-          />
-        </div>
-        <div>
-          <button
-            className="btn btn-success"
-            type="button"
-            id={id}
-            onClick={() => { addPost() }}
-          >
-            {'Добавить пост'}
-          </button>
-        </div>
-      </div>
+      <PostForm onSubmit={onSubmit} />
       <div className={s.posts}>
         {post}
       </div>
@@ -56,4 +31,11 @@ const MyPosts = (props) => {
   )
 }
 
-export default MyPosts
+const mapStateToProps = state => ({
+  newPostText: state.profilePage.newPostText,
+  posts: state.profilePage.posts,
+})
+
+const mapDispatchToProps = { addPost, dellPost }
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyPosts)

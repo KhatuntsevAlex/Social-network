@@ -1,11 +1,11 @@
 import React from 'react'
-import MyPostsContainer from './MyPosts/MyPostsContainer'
-import ProfileInfoContainer from './ProfileInfo/ProfileInfoContainer'
+import MyPosts from './MyPosts/MyPosts'
+import ProfileInfo from './ProfileInfo/ProfileInfo'
 
 const Profile = () => (
   <div>
-    <ProfileInfoContainer />
-    <MyPostsContainer />
+    <ProfileInfo />
+    <MyPosts />
   </div>
 )
 

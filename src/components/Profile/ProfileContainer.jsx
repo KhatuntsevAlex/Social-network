@@ -7,7 +7,8 @@ import { getUserProfile, getStatus } from '../../redux/profile-reducer'
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
-    let userId = this.props.match.params.userId
+
+    let {userId} = this.props.match.params
     if (!userId) userId = 1172
     this.props.getUserProfile(userId)
     this.props.getStatus(userId)
