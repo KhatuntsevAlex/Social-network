@@ -2,11 +2,12 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { Input } from '../common/FormsControls/FormsControls'
 import { required, maxLength, minLength } from '../../utils/validators/validators'
+import s from './Login.module.css'
 
-const maxLength20 = maxLength(20)
+const maxLength30 = maxLength(30)
 const minLength8 = minLength(8)
 
-const LoginForm = ({ handleSubmit }) => (
+const LoginForm = ({ handleSubmit, error }) => (
   <form onSubmit={handleSubmit}>
     <div>
       <Field
@@ -14,7 +15,7 @@ const LoginForm = ({ handleSubmit }) => (
         component={Input}
         type="email"
         placeholder="Email"
-        validate={[required, maxLength20]} />
+        validate={[required, maxLength30]} />
     </div>
     <div>
       <Field
@@ -30,6 +31,7 @@ const LoginForm = ({ handleSubmit }) => (
         component={Input}
         type="checkbox" /> remember me
         </div>
+    {error && <div className={s.formSummaryError}>{error}</div>}
     <div>
       <button type="submit">Login</button>
     </div>

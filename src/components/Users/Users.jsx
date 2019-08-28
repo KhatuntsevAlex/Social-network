@@ -6,7 +6,7 @@ import userPhoto from '../../assets/images/userLogo.png'
 const Users = ({
   totalUsersCount, users, onPageChanged,
   pageSize, followingInProgress,
-  follow, unfollow,
+  follow, unfollow, currentPage,
 }) => {
   const pageCount = Math.ceil(totalUsersCount / pageSize)
   const pages = []
@@ -15,6 +15,7 @@ const Users = ({
   }
   return (
     <div className={s.users}>
+
       <nav aria-label="...">
         <ul className="pagination pagination-sm">
           {pages.map(p => (
@@ -26,7 +27,7 @@ const Users = ({
               tabIndex={p}
             >
               <li className="page-item">
-                <button role="link" className="page-link" type="button">
+                <button role="link" className={`page-link ${p === currentPage && s.selectedPage}`} type="button">
                   {p}
                 </button>
               </li>

@@ -7,6 +7,7 @@ import sidebarReducer from './sidebar-reducer'
 import usersReducer from './users-reducer'
 import musicReducer from './music-reducer'
 import authReduser from './auth-reduser'
+import appReduser from './app-reduser'
 
 const reducers = combineReducers({
   profilePage: profileReducer,
@@ -16,6 +17,7 @@ const reducers = combineReducers({
   musicPage: musicReducer,
   auth: authReduser,
   form: formReducer,
+  app: appReduser,
 })
 
 const store = createStore(reducers, applyMiddleware(thunk))

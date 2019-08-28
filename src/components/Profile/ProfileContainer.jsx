@@ -7,9 +7,13 @@ import { getUserProfile, getStatus } from '../../redux/profile-reducer'
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
-
-    let {userId} = this.props.match.params
-    if (!userId) userId = 1172
+    let { userId } = this.props.match.params
+    const { authorizedUserId, isAuth } = this.props
+    if (!userId) {
+      userId = authorizedUserId
+      if (!userId)
+        this.props.history.push('/login')
+    }
     this.props.getUserProfile(userId)
     this.props.getStatus(userId)
   }
@@ -17,7 +21,10 @@ class ProfileContainer extends React.Component {
   render() { return <Profile {...this.props} /> }
 }
 
-const mapStateToProps = () => ({})
+const mapStateToProps = state => ({
+  authorizedUserId: state.auth.id,
+  isAuth: state.auth.isAuth,
+})
 
 const mapDispatchToProps = { getUserProfile, getStatus }
 
