@@ -8,14 +8,7 @@ const ProfileStatus = (props) => {
   useEffect(() => {
     setStatus(props.status)
   }, [props.status])
-  /* componentDidUpdate(prevProps, prevState) {
-    if (prevProps.status !== this.props.status) {
-      this.setState({
-        status: this.props.status,
-      })
-    }
 
-  } */
 
   const activateEditMode = () => {
     setEditMode(true)

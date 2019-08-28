@@ -5,7 +5,7 @@ import Preloader from '../../common/Preloader/Preloader'
 import s from './ProfileInfo.module.css'
 import ProfileStatus from './ProfileStatus'
 
-const ProfileInfo = ({ profile, status, ...funcs }) => {
+const ProfileInfo = React.memo(({ profile, status, ...funcs }) => {
   const contacts = Object.keys(profile.contacts)
     .map(
       key => (
@@ -53,7 +53,7 @@ const ProfileInfo = ({ profile, status, ...funcs }) => {
       </div>
     </div>
   )
-}
+})
 
 const mapStateToProps = state => ({
   profile: state.profilePage.profile,
