@@ -9,47 +9,48 @@ const instance = axios.create({
 })
 
 const usersAPI = {
-  getUsers(currentPage = 1, pageSize = 5) {
-    return instance
-      .get(`users?page=${currentPage}&count=${pageSize}`)
-      .then(response => response.data)
+  
+  async getUsers(currentPage = 1, pageSize = 5) {
+    return (await instance.get(`users?page=${currentPage}&count=${pageSize}`)).data
   },  
 
-  unfollow(id) {
-    return instance.delete(`follow/${id}`).then(response => response.data)
+  async unfollow(id) {
+    return (await instance.delete(`follow/${id}`)).data
   },
 
-  follow(id) {
-    return instance.post(`follow/${id}`).then(response => response.data)
+  async follow(id) {
+    return (await instance.post(`follow/${id}`)).data
   },
 }
 
 export default usersAPI
 
 export const profileAPI = {
-  getUserProfile(id) {
-    return instance.get(`profile/${id}`).then(response => response.data)
+  
+  async getUserProfile(id) {
+    return (await instance.get(`profile/${id}`)).data
   },
 
-  getStatus(id) {
-    return instance.get(`profile/status/${id}`).then(response => response.data)
+  async getStatus(id) {
+    return (await instance.get(`profile/status/${id}`)).data
   },
 
-  updateStatus(status) {
-    return instance.put(`profile/status`, {status}).then(response => response.data)
+  async updateStatus(status) {
+    return (await instance.put(`profile/status`, {status})).data
   },
 }
 
 export const authAPI = {
-  me() {
-    return instance.get('auth/me').then(response => response.data)
+  
+  async me() {
+    return (await instance.get('auth/me')).data
   },
 
-  login(email, password, rememberMe) {
-    return instance.post('auth/login', {email, password, rememberMe}).then(response => response.data)
+    async login(email, password, rememberMe) {
+    return (await instance.post('auth/login', {email, password, rememberMe})).data
   },
 
-  logout() {
-    return instance.delete('auth/login').then(response => response.data)
+  async logout() {
+    return (await instance.delete('auth/login')).data
   },
 }

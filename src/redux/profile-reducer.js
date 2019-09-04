@@ -59,7 +59,6 @@ const initialState = {
 }
 
 const profileReducer = (state = initialState, action) => {
-  let stateCopy
   switch (action.type) {
     case ADD_POST: {
       const newPostId = state.posts.length + 1
@@ -86,14 +85,10 @@ const profileReducer = (state = initialState, action) => {
         ...state,
         status: action.status,
       }
-    case DELL_POST: {
-      stateCopy = {
+    case DELL_POST:       
+      return {
         ...state,
-        posts: [...state.posts],
-      }
-      const postIndex = stateCopy.posts.findIndex(message => message.id === action.messageId)
-      stateCopy.posts.splice(postIndex, 1)
-      return stateCopy
+        posts: state.posts.filter(item => item.id !== action.messageId),      
     }
     default:
       return state
@@ -112,24 +107,18 @@ export const setStatus = status => ({ type: SET_STATUS, status })
 
 export default profileReducer
 
-export const getUserProfile = id => (dispatch) => {
-  profileAPI.getUserProfile(id)
-    .then((data) => {
-      dispatch(setUserProfile(data))
-    })
+export const getUserProfile = id => async (dispatch) => {
+  const data = await profileAPI.getUserProfile(id)
+      dispatch(setUserProfile(data))    
 }
 
-export const getStatus = id => (dispatch) => {
-  profileAPI.getStatus(id)
-    .then((data) => {
-      dispatch(setStatus(data))
-    })
+export const getStatus = id => async (dispatch) => {
+  const data = await profileAPI.getStatus(id)    
+      dispatch(setStatus(data))    
 }
 
-export const updateStatus = status => (dispatch) => {
-  profileAPI.updateStatus(status)
-    .then((data) => {
+export const updateStatus = status => async (dispatch) => {
+  const data = await profileAPI.updateStatus(status)    
       if(data.resultCode === 0)
-      dispatch(setStatus(status))
-    })
+      dispatch(setStatus(status))    
 }

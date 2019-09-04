@@ -68,4 +68,4 @@ const dialogsReducer = (state = initialState, action) => {
 }
 export default dialogsReducer
 
-export const sendMessage = (message) => ({ type: SEND_MESSAGE, message })
+export const sendMessage = message => ({ type: SEND_MESSAGE, message })

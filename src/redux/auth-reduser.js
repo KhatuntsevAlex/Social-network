@@ -29,30 +29,28 @@ export const setAuthUserData = (id, email, login, isAuth) => (
   { type: SET_USER_DATA, payload: { id, email, login, isAuth } }
 )
 
-export const getAuthUserData = () => (dispatch) => {
-  return authAPI.me().then((data) => {
-    if (data.resultCode === 0) {
-      const { id, email, login } = data.data
-      dispatch(setAuthUserData(id, email, login, true))
-    }
-  })
+// eslint-disable-next-line consistent-return
+export const getAuthUserData = () => async (dispatch) => {
+  const data = await authAPI.me()
+  if (data.resultCode === 0) {
+    const { id, email, login } = data.data
+    return dispatch(setAuthUserData(id, email, login, true))
+  }
 }
 
-export const login = (email, password, rememberMe) => (dispatch) => {
-  authAPI.login(email, password, rememberMe).then((data) => {
+export const login = (email, password, rememberMe) => async (dispatch) => {
+  const data = await authAPI.login(email, password, rememberMe)  
     if (data.resultCode === 0) {      
       dispatch(getAuthUserData())
     } else {
       const errorMessage = data.messages.length > 0 ? data.messages[0] : 'Wrong Email or Password'
       dispatch(stopSubmit('login', {_error: errorMessage}))
-    }
-  })
+    } 
 }
 
-export const logout = () => (dispatch) => {
-  authAPI.logout().then((data) => {
+export const logout = () => async (dispatch) => {
+  const data = await authAPI.logout()  
     if (data.resultCode === 0) {      
       dispatch(setAuthUserData(null, null, null, false))
-    }
-  })
+    } 
 }
