@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form'
 import { Input } from '../common/FormsControls/FormsControls'
 import { required, maxLength, minLength } from '../../utils/validators/validators'
 import s from './Login.module.css'
+import { resetForm } from '../../utils/helpers/resetFormAfterSubmit'
 
 const maxLength30 = maxLength(30)
 const minLength8 = minLength(8)
@@ -38,4 +39,4 @@ const LoginForm = ({ handleSubmit, error }) => (
   </form>
 
 )
-export default reduxForm({ form: 'login' })(LoginForm)
+export default reduxForm({ form: 'login', onSubmitSuccess: resetForm('login') })(LoginForm)

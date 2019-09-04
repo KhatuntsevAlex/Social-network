@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { follow, unfollow, setCurrentPage, getUsers } from '../../redux/users-reducer'
 import Users from './Users'
@@ -12,37 +12,26 @@ import {
   selectFollowingInProgress,
 } from '../../redux/users-selectors'
 
-class UsersContainer extends React.Component {
+const UsersContainer = props => {
+  const { currentPage, pageSize, isFetching, ...funcs } = props
+  useEffect(() => {
+    funcs.getUsers(currentPage, pageSize)
+  }, [currentPage, pageSize])
 
-  componentDidMount() {
-    this.props.getUsers(this.props.currentPage, this.props.pageSize)
+  const onPageChanged = (p) => {
+    funcs.getUsers(p, pageSize)
   }
 
-  onPageChanged = (p) => {
-    this.props.getUsers(p, this.props.pageSize)
-  }
+  return <>
+    {
+      isFetching
+        ? <Preloader />
+        : <Users {...props} onPageChanged={onPageChanged} />
+    }
+  </>
 
-  render() {
-    return <>
-      {
-        this.props.isFetching
-          ? <Preloader />
-          : <Users {...this.props} onPageChanged={this.onPageChanged} />
-      }
-    </>
-  }
 }
 
-/* const mapStateToProps = (state) => {
-  return {
-    users: state.usersPage.users,
-    pageSize: state.usersPage.pageSize,
-    totalUsersCount: state.usersPage.totalUsersCount,
-    currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
-    followingInProgress: state.usersPage.followingInProgress,
-  }
-} */
 const mapStateToProps = (state) => {
   return {
     users: selectUsersSuper(state),

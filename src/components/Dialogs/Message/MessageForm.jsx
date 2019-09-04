@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form'
 import s from './Message.module.css'
 import { Textarea } from '../../common/FormsControls/FormsControls'
 import { required, maxLength } from '../../../utils/validators/validators'
+import { resetForm } from '../../../utils/helpers/resetFormAfterSubmit'
 
 const maxLength20 = maxLength(20)
 
@@ -28,4 +29,7 @@ const MessageForm = ({ handleSubmit }) => (
     </div>
   </form>
 )
-export default reduxForm({ form: 'message' })(MessageForm)
+
+
+
+export default reduxForm({ form: 'message', onSubmitSuccess: resetForm('message') })(MessageForm)

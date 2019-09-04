@@ -2,6 +2,7 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { required, maxLength } from '../../../utils/validators/validators'
 import { Textarea } from '../../common/FormsControls/FormsControls'
+import { resetForm } from '../../../utils/helpers/resetFormAfterSubmit'
 
 const maxLength30 = maxLength(30)
 
@@ -28,4 +29,4 @@ const PostForm = ({ handleSubmit }) => (
   </form>
 )
 
-export default reduxForm({ form: 'post' })(PostForm)
+export default reduxForm({ form: 'post', onSubmitSuccess: resetForm('post') })(PostForm)
