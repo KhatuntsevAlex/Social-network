@@ -1,14 +1,14 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6f8f51c22539a33ed47a8b3dfc2b2bb7",
+    "revision": "8e416c0e9ce5df78b2fb50d4d22eb0d5",
     "url": "/Social-network/index.html"
   },
   {
-    "revision": "36ffd3269c2b6fbc15ed",
+    "revision": "1dc251da146a78873331",
     "url": "/Social-network/static/css/2.619dee99.chunk.css"
   },
   {
-    "revision": "92275da7371753b5d18e",
+    "revision": "7ce3d88bdd7963820b67",
     "url": "/Social-network/static/css/3.4c4d502e.chunk.css"
   },
   {
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Social-network/static/css/4.31d43ea8.chunk.css"
   },
   {
-    "revision": "b974f212c00b6f450e20",
+    "revision": "761c2f91cb924e0be055",
     "url": "/Social-network/static/css/5.9d06a524.chunk.css"
   },
   {
@@ -24,24 +24,24 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Social-network/static/css/6.c96c9e99.chunk.css"
   },
   {
-    "revision": "c16145d867b26ad1a000",
+    "revision": "47ee8b02e387caf866b6",
     "url": "/Social-network/static/css/main.9bf0a961.chunk.css"
   },
   {
-    "revision": "36ffd3269c2b6fbc15ed",
-    "url": "/Social-network/static/js/2.28f0e676.chunk.js"
+    "revision": "1dc251da146a78873331",
+    "url": "/Social-network/static/js/2.d671dba2.chunk.js"
   },
   {
-    "revision": "92275da7371753b5d18e",
-    "url": "/Social-network/static/js/3.5bbcc2ed.chunk.js"
+    "revision": "7ce3d88bdd7963820b67",
+    "url": "/Social-network/static/js/3.c9f2f64d.chunk.js"
   },
   {
     "revision": "627ac94e65628b61088f",
     "url": "/Social-network/static/js/4.d9d6a4fe.chunk.js"
   },
   {
-    "revision": "b974f212c00b6f450e20",
-    "url": "/Social-network/static/js/5.2929fe86.chunk.js"
+    "revision": "761c2f91cb924e0be055",
+    "url": "/Social-network/static/js/5.df50b6ef.chunk.js"
   },
   {
     "revision": "8f6e4605a3478e74130c",
@@ -56,12 +56,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Social-network/static/js/8.072ef7d2.chunk.js"
   },
   {
-    "revision": "c16145d867b26ad1a000",
-    "url": "/Social-network/static/js/main.aa6a2171.chunk.js"
+    "revision": "47ee8b02e387caf866b6",
+    "url": "/Social-network/static/js/main.4bc1ebb7.chunk.js"
   },
   {
-    "revision": "e7c51863e09a6a7df4c2",
-    "url": "/Social-network/static/js/runtime~main.87ad61a5.js"
+    "revision": "823d171e5c2b7b49837f",
+    "url": "/Social-network/static/js/runtime~main.08b674de.js"
   },
   {
     "revision": "6b093961fe87fa13d6a81fbfce5e4f2a",
