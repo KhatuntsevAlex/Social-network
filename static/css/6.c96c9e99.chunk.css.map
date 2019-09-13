@@ -1,0 +1,1 @@
+{"version":3,"sources":["Music.module.css"],"names":[],"mappings":"AAAA,uBACI,mBACF,CAEF,qBACI,gBAAiB,CACjB,eACJ","file":"6.c96c9e99.chunk.css","sourcesContent":[".musicTxt {\r\n    vertical-align: 20px;\r\n  }\r\n\r\n.player {   \r\n    margin-left: 10px;\r\n    margin-top: 10px;\r\n}"]}
