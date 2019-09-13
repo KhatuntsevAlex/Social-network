@@ -13,8 +13,8 @@ const Pagenation = ({
     pages.push(i)
   }
   if (pages.length > 11) {
-    if (currentPage > 5 && currentPage < pageCount - 4) {
-      pages = ['...', ...pages.slice(currentPage - 5, currentPage + 4), '...']
+    if (currentPage > 4 && currentPage < pageCount - 4) {
+      pages = ['...', ...pages.slice(currentPage - 4, currentPage + 4), '...']
     } else {
       pages = [...pages.slice(0, 5), '...', ...pages.slice(-5)]
     }
