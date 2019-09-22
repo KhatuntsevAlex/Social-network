@@ -4,9 +4,10 @@ const ADD_POST = 'ADD_POST'
 const DELL_POST = 'DELL_POST'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_STATUS = 'SET_STATUS'
+const SET_PHOTOS = 'SET_PHOTOS'
 
 const initialState = {
-  profile: {
+  profile: null/* {
     id: 1,
     fullName: 'Саша',
     likesCount: 0,
@@ -26,7 +27,7 @@ const initialState = {
       youtube: '',
     },
     lookingForAJobDescription: '',
-  },
+  } */,
 
   posts: [
     {
@@ -85,6 +86,11 @@ const profileReducer = (state = initialState, action) => {
         ...state,
         status: action.status,
       }
+    case SET_PHOTOS:
+      return {
+        ...state,
+        profile: {...state.profile, photos: action.photos},
+      }
     case DELL_POST:       
       return {
         ...state,
@@ -102,6 +108,8 @@ export const dellPost = messageId => ({ type: DELL_POST, messageId })
 export const setUserProfile = profile => ({ type: SET_USER_PROFILE, profile })
 
 export const setStatus = status => ({ type: SET_STATUS, status })
+
+export const setPhotos = photos => ({ type: SET_PHOTOS, photos })
 
 /* export const changeStatus = status => ({ type: CHANGE_STATUS, status }) */
 
@@ -121,4 +129,11 @@ export const updateStatus = status => async (dispatch) => {
   const data = await profileAPI.updateStatus(status)    
       if(data.resultCode === 0)
       dispatch(setStatus(status))    
+}
+
+export const updatePhoto = photo => async (dispatch) => {
+  const data = await profileAPI.updatePhoto(photo)
+  debugger
+      if(data.resultCode === 0)
+      dispatch(setPhotos(data.data.photos))  
 }

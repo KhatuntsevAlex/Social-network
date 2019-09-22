@@ -38,6 +38,16 @@ export const profileAPI = {
   async updateStatus(status) {
     return (await instance.put(`profile/status`, {status})).data
   },
+
+  async updatePhoto(photoFile) {
+    const form = new FormData()
+    form.append("image", photoFile)
+    return (await instance.put(`profile/photo`, form, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })).data
+  },
 }
 
 export const authAPI = {

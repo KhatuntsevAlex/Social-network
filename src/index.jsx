@@ -9,7 +9,7 @@ import store from './redux/redux-store'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Provider store={store}>
       <App />
     </Provider>

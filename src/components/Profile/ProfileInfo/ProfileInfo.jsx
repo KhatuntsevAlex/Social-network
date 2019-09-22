@@ -1,12 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { updateStatus } from '../../../redux/profile-reducer'
+import { updateStatus, updatePhoto } from '../../../redux/profile-reducer'
 import Preloader from '../../common/Preloader/Preloader'
 import s from './ProfileInfo.module.css'
 import ProfileStatus from './ProfileStatus'
+import userPhoto from '../../../assets/images/userLogo.png'
 
-const ProfileInfo = React.memo(({ profile, status, ...funcs }) => {
-  const contacts = Object.keys(profile.contacts)
+
+const ProfileInfo = React.memo(({ profile, status, isOwner, ...funcs }) => {
+  const contacts = !!profile && Object.keys(profile.contacts)
     .map(
       key => (
         profile.contacts[key]
@@ -14,23 +16,30 @@ const ProfileInfo = React.memo(({ profile, status, ...funcs }) => {
           : null
       )
     )
+  const onMainPhotoSelect = (e) => {
+    e.preventDefault()
+    if (e.target.files.length) {
+      funcs.updatePhoto(e.target.files[0])
+    }
+  }
   if (!profile) return <Preloader />
   return (
     <div>
       <div>
         <img
-          src={profile.photos.large}
+          src={profile.photos.large || userPhoto}
           className={s.titleImage}
           alt="..."
         />
       </div>
       <div className={s.descriptionBlock}>
         <img
-          src={profile.photos.small}
+          src={profile.photos.small || userPhoto}
           className={s.ava}
           alt="..."
         />
         {profile.fullName ? <strong>{profile.fullName}</strong> : null}
+        {isOwner && <input type="file" onChange={onMainPhotoSelect} />}
         <ProfileStatus status={status} updateStatus={funcs.updateStatus} />
         {profile.aboutMe
           ? (
@@ -62,6 +71,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   updateStatus,
+  updatePhoto,
 }
 
 const ProfileInfoContainer = connect(mapStateToProps, mapDispatchToProps, null, { pure: false })(ProfileInfo)
