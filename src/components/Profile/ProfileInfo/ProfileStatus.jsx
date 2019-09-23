@@ -27,7 +27,7 @@ const ProfileStatus = (props) => {
     <div>
       {
         !editMode
-          ? <span onDoubleClick={activateEditMode}>{status || 'Please click twice to change your status'}</span>
+          ? <span onDoubleClick={activateEditMode}><i>{status || (props.isOwner && 'Please click twice to change your status')}</i></span>
           : <input
             onBlur={deactivateEditMode}
             value={status}

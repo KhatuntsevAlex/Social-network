@@ -28,7 +28,7 @@ class ProfileContainer extends React.Component {
     this.props.getStatus(userId)
   }
 
-  render() { return <Profile {...this.props} isOwner={!this.props.match.params.userId || this.props.authorizedUserId} /> }
+  render() { return <Profile {...this.props} isOwner={!this.props.match.params.userId} /> }
 }
 
 const mapStateToProps = state => ({

@@ -36,7 +36,8 @@ export const profileAPI = {
   },
 
   async updateStatus(status) {
-    return (await instance.put(`profile/status`, {status})).data
+    const response = await instance.put(`profile/status`, {status})
+    return response
   },
 
   async updatePhoto(photoFile) {

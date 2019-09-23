@@ -15,7 +15,7 @@ const Header = ({ isAuth, login, userId, ...funcs }) => (
         isAuth
           ? (
             <div className={s.loginTrue}>
-              <NavLink to={`/profile/${userId}`}>
+              <NavLink to="/profile">
                 {login}
               </NavLink>
               <span style={{ color: 'white' }}> - </span>

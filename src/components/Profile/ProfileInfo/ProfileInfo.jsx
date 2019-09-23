@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { updateStatus, updatePhoto } from '../../../redux/profile-reducer'
 import Preloader from '../../common/Preloader/Preloader'
@@ -8,6 +8,7 @@ import userPhoto from '../../../assets/images/userLogo.png'
 
 
 const ProfileInfo = React.memo(({ profile, status, isOwner, ...funcs }) => {
+  const [downloadFileBtnVisibility, setDownloadFileBtnVisibility] = useState(false)
   const contacts = !!profile && Object.keys(profile.contacts)
     .map(
       key => (
@@ -33,14 +34,33 @@ const ProfileInfo = React.memo(({ profile, status, isOwner, ...funcs }) => {
         />
       </div>
       <div className={s.descriptionBlock}>
-        <img
-          src={profile.photos.small || userPhoto}
-          className={s.ava}
-          alt="..."
-        />
+        <div
+          className={s.avaWrapper}
+          onMouseEnter={() => { setDownloadFileBtnVisibility(true) }}
+          onMouseLeave={() => { setDownloadFileBtnVisibility(false) }}
+        >
+          <img
+            src={profile.photos.small || userPhoto}
+            className={s.ava}
+            alt="..."
+          />
+          {isOwner && downloadFileBtnVisibility && <>
+            <input
+              type="file"
+              id="input-file"
+              className={s.inputFile}
+              onChange={onMainPhotoSelect}
+            />
+            <label tabIndex="0" htmlFor="input-file" className={s.inputFileButton}>
+              <span className={s.inputFileIconWrapper}>
+                <img src="./img/add.svg" alt="Choose file" width="25" />
+              </span>
+            </label>
+          </>
+          }
+        </div>
         {profile.fullName ? <strong>{profile.fullName}</strong> : null}
-        {isOwner && <input type="file" onChange={onMainPhotoSelect} />}
-        <ProfileStatus status={status} updateStatus={funcs.updateStatus} />
+        <ProfileStatus status={status} updateStatus={funcs.updateStatus} isOwner={isOwner}/>
         {profile.aboutMe
           ? (
             <p>
@@ -61,6 +81,7 @@ const ProfileInfo = React.memo(({ profile, status, isOwner, ...funcs }) => {
         }
       </div>
     </div>
+
   )
 })
 

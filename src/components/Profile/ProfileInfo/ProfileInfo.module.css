@@ -1,4 +1,8 @@
-.ava {
+.avaWrapper {
+  box-sizing: border-box;
+}
+
+.avaWrapper, .ava {
   width: 200px;
   height: 200px;
   border-radius: 50%;
@@ -19,4 +23,51 @@
   border-top: 2px dotted lightgray;
   border-bottom: 2px dotted lightgray;
   border-radius: 20px 20px 20px 20px;
+}
+
+/*INPUT TYPE="FILE" STYLING*/
+
+.inputFile {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.inputFileButton {
+  position: relative;
+  top: -50%;
+  left: 50%;
+  transform: translate(-50%, -90%);
+  max-width: 60px;
+  height: 60px;
+  background: #1bbc9b;
+  opacity: 0.7;
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: 700;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  border-radius: 3px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.inputFileIconWrapper {
+  height: 60px;
+  width: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }

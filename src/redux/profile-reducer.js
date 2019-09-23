@@ -133,7 +133,6 @@ export const updateStatus = status => async (dispatch) => {
 
 export const updatePhoto = photo => async (dispatch) => {
   const data = await profileAPI.updatePhoto(photo)
-  debugger
       if(data.resultCode === 0)
       dispatch(setPhotos(data.data.photos))  
 }
