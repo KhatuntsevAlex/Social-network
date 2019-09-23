@@ -2,8 +2,8 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { Input } from '../common/FormsControls/FormsControls'
 import { required, maxLength, minLength } from '../../utils/validators/validators'
-import s from './Login.module.css'
 import { resetForm } from '../../utils/helpers/resetFormAfterSubmit'
+import s from './Login.module.css'
 
 const maxLength30 = maxLength(30)
 const minLength8 = minLength(8)

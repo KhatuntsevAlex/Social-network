@@ -1,3 +1,4 @@
+import {stopSubmit} from 'redux-form'
 import { profileAPI } from '../api/api'
 
 const ADD_POST = 'ADD_POST'
@@ -7,28 +8,7 @@ const SET_STATUS = 'SET_STATUS'
 const SET_PHOTOS = 'SET_PHOTOS'
 
 const initialState = {
-  profile: null/* {
-    id: 1,
-    fullName: 'Саша',
-    likesCount: 0,
-    aboutMe: '',
-    photos: {
-      small: 'http://i.ru-phone.org/userfiles/walls/108/1086374/vxrafhkv.jpg',
-      large: 'https://21foto.ru/wp-content/uploads/2015/11/20080511_3449-Panorama.jpg',
-    },
-    contacts: {
-      facebook: '',
-      github: '',
-      instagram: '',
-      mainLink: '',
-      twitter: '',
-      vk: '',
-      website: '',
-      youtube: '',
-    },
-    lookingForAJobDescription: '',
-  } */,
-
+  profile: null,
   posts: [
     {
       id: 1,
@@ -101,19 +81,17 @@ const profileReducer = (state = initialState, action) => {
   }
 }
 
+export default profileReducer
+
 export const addPost = (text) => ({ type: ADD_POST, text })
 
 export const dellPost = messageId => ({ type: DELL_POST, messageId })
 
-export const setUserProfile = profile => ({ type: SET_USER_PROFILE, profile })
+const setUserProfile = profile => ({ type: SET_USER_PROFILE, profile })
 
-export const setStatus = status => ({ type: SET_STATUS, status })
+const setStatus = status => ({ type: SET_STATUS, status })
 
-export const setPhotos = photos => ({ type: SET_PHOTOS, photos })
-
-/* export const changeStatus = status => ({ type: CHANGE_STATUS, status }) */
-
-export default profileReducer
+const setPhotos = photos => ({ type: SET_PHOTOS, photos })
 
 export const getUserProfile = id => async (dispatch) => {
   const data = await profileAPI.getUserProfile(id)
@@ -135,4 +113,17 @@ export const updatePhoto = photo => async (dispatch) => {
   const data = await profileAPI.updatePhoto(photo)
       if(data.resultCode === 0)
       dispatch(setPhotos(data.data.photos))  
+}
+
+export const updateInfo = infoData => async (dispatch, getState) => {
+  const {id} = getState().auth
+  const data = await profileAPI.updateInfo(infoData)
+    if(data.resultCode === 0){
+      return dispatch(getUserProfile(id)) 
+    }
+      /* const fieldReg = /\>([^&]*)\)/
+const errorReg = /([^&]*)\s\(/ */
+      const errorMessage = data.messages.length > 0 ? data.messages : 'Wrong field'
+      dispatch(stopSubmit('profile', {_error: errorMessage}))
+    
 }

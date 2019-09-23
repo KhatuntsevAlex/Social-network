@@ -1,28 +1,33 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { updateStatus, updatePhoto } from '../../../redux/profile-reducer'
+import { updateStatus, updatePhoto, updateInfo } from '../../../redux/profile-reducer'
 import Preloader from '../../common/Preloader/Preloader'
-import s from './ProfileInfo.module.css'
 import ProfileStatus from './ProfileStatus'
 import userPhoto from '../../../assets/images/userLogo.png'
-
+import ProfilePhoto from './ProfilePhoto'
+import ProfileData from './ProfileData'
+import ProfileDataForm from './ProfileDataForm'
+import s from './ProfileInfo.module.css'
 
 const ProfileInfo = React.memo(({ profile, status, isOwner, ...funcs }) => {
+  const [isEditeMode, setEditeMode] = useState(false)
+  const [isUpdating, setIsUpdating] = useState(false)
   const [downloadFileBtnVisibility, setDownloadFileBtnVisibility] = useState(false)
-  const contacts = !!profile && Object.keys(profile.contacts)
-    .map(
-      key => (
-        profile.contacts[key]
-          ? <p><b>{key}: </b>{profile.contacts[key]}</p>
-          : null
-      )
-    )
-  const onMainPhotoSelect = (e) => {
+
+  const onAvaPhotoSelect = (e) => {
     e.preventDefault()
     if (e.target.files.length) {
       funcs.updatePhoto(e.target.files[0])
     }
   }
+
+  const onSubmit = async (data) => {
+    setIsUpdating(true)
+    await funcs.updateInfo(data)
+    setEditeMode(false)
+    setIsUpdating(false)
+  }
+
   if (!profile) return <Preloader />
   return (
     <div>
@@ -34,50 +39,34 @@ const ProfileInfo = React.memo(({ profile, status, isOwner, ...funcs }) => {
         />
       </div>
       <div className={s.descriptionBlock}>
-        <div
-          className={s.avaWrapper}
-          onMouseEnter={() => { setDownloadFileBtnVisibility(true) }}
-          onMouseLeave={() => { setDownloadFileBtnVisibility(false) }}
-        >
-          <img
-            src={profile.photos.small || userPhoto}
-            className={s.ava}
-            alt="..."
+        <div className={s.photoPlusStatus}>
+          <ProfilePhoto
+            onMainPhotoSelect={onAvaPhotoSelect}
+            small={profile.photos.small}
+            isOwner={isOwner}
+            userPhoto={userPhoto}
+            downloadFileBtnVisibility={downloadFileBtnVisibility}
+            setDownloadFileBtnVisibility={setDownloadFileBtnVisibility}
           />
-          {isOwner && downloadFileBtnVisibility && <>
-            <input
-              type="file"
-              id="input-file"
-              className={s.inputFile}
-              onChange={onMainPhotoSelect}
-            />
-            <label tabIndex="0" htmlFor="input-file" className={s.inputFileButton}>
-              <span className={s.inputFileIconWrapper}>
-                <img src="./img/add.svg" alt="Choose file" width="25" />
-              </span>
-            </label>
-          </>
-          }
+          <ProfileStatus
+            status={status}
+            updateStatus={funcs.updateStatus}
+            isOwner={isOwner}
+          />
         </div>
-        {profile.fullName ? <strong>{profile.fullName}</strong> : null}
-        <ProfileStatus status={status} updateStatus={funcs.updateStatus} isOwner={isOwner}/>
-        {profile.aboutMe
-          ? (
-            <p>
-              <b>Обо мне: </b>
-              {profile.aboutMe}
-            </p>
-          )
-          : null}
-        {contacts}
-        {profile.lookingForAJobDescription
-          ? (
-            <p>
-              <b>Работа: </b>
-              {profile.lookingForAJobDescription}
-            </p>
-          )
-          : null
+        {profile && isEditeMode
+          ? <ProfileDataForm
+            initialValues={profile}
+            profile={profile}
+            setEditeMode={setEditeMode}
+            onSubmit={onSubmit}
+            isUpdating={isUpdating}
+          />
+          : <ProfileData
+            profile={profile}
+            isOwner={isOwner}
+            setEditeMode={setEditeMode}
+          />
         }
       </div>
     </div>
@@ -93,6 +82,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   updateStatus,
   updatePhoto,
+  updateInfo,
 }
 
 const ProfileInfoContainer = connect(mapStateToProps, mapDispatchToProps, null, { pure: false })(ProfileInfo)

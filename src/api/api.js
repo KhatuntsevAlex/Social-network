@@ -36,18 +36,22 @@ export const profileAPI = {
   },
 
   async updateStatus(status) {
-    const response = await instance.put(`profile/status`, {status})
+    const response = await instance.put('profile/status', {status})
     return response
   },
 
   async updatePhoto(photoFile) {
     const form = new FormData()
     form.append("image", photoFile)
-    return (await instance.put(`profile/photo`, form, {
+    return (await instance.put('profile/photo', form, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
     })).data
+  },
+
+  async updateInfo(data) {
+    return (await instance.put('profile', data)).data
   },
 }
 
