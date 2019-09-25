@@ -21,11 +21,20 @@ const ProfileInfo = React.memo(({ profile, status, isOwner, ...funcs }) => {
     }
   }
 
-  const onSubmit = async (data) => {
+  const onHandleSubmit = (data) => {
     setIsUpdating(true)
-    await funcs.updateInfo(data)
+    funcs.updateInfo(data)
+      .then(() => {
+        setEditeMode(false)
+        setIsUpdating(false)
+      })
+      .catch(() => {
+        setIsUpdating(false)
+      })
+  }
+
+  const cancelEditing = () => {
     setEditeMode(false)
-    setIsUpdating(false)
   }
 
   if (!profile) return <Preloader />
@@ -59,8 +68,9 @@ const ProfileInfo = React.memo(({ profile, status, isOwner, ...funcs }) => {
             initialValues={profile}
             profile={profile}
             setEditeMode={setEditeMode}
-            onSubmit={onSubmit}
+            onSubmit={onHandleSubmit}
             isUpdating={isUpdating}
+            cancelEditing={cancelEditing}
           />
           : <ProfileData
             profile={profile}

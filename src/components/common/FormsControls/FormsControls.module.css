@@ -1,13 +1,22 @@
 .formControl {
-  display: flex;
-  align-items: center;
+  display: inline-block;
+  vertical-align: middle;
+  /*   align-items: center;
+ */
 }
 
-.formControl.error input, .formControl.error textarea {
-  border: solid red 1px;
+.formControl.error input, .formControl.error textarea, .formSummaryError {
+  border: solid rgb(192, 76, 76) 1px;
+}
+
+.formControl.error span, .formSummaryError {
+  color: rgb(192, 76, 76);
 }
 
 .formControl.error span {
-  color: red;
   font-weight: bold;
+}
+
+.formSummaryError {
+  padding: 5px;
 }

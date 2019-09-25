@@ -1,30 +1,31 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { Input, Textarea } from '../../common/FormsControls/FormsControls'
-import { resetForm } from '../../../utils/helpers/resetFormAfterSubmit'
 import s from './ProfileInfo.module.css'
-import errorStyle from '../../Login/Login.module.css'
+import errorStyle from '../../common/FormsControls/FormsControls.module.css'
 
 const ProfileDataForm = ({
   profile,
   handleSubmit,
   error,
   isUpdating,
+  cancelEditing,
 }) => {
   const contacts = Object.keys(profile.contacts)
-    .map(key => <div>
-      <b>{key}: </b>
-      <Field
-        key={`profileDataForm_${key}`}
-        name={`contacts.${key}`}
-        component={Input}
-        type="text"
-        placeholder={key}
-      />
-    </div>)
-  return (
+    .map(contact =>
+      <div key={`profileDataForm_${contact}`} className={`${s.contacts} ${s.noMargin}`}>
+        <b>{contact}: </b>
+        <Field
+          name={`contacts.${contact}`}
+          component={Input}
+          type="text"
+          placeholder={contact}
+        />
+      </div>
+    )
+  return <>
     <form onSubmit={handleSubmit} className={s.profileDataForm}>
-      {<p>
+      {<div>
         <strong>Full name: </strong>
         <Field
           name="fullName"
@@ -32,30 +33,41 @@ const ProfileDataForm = ({
           type="text"
           placeholder="Name"
         />
-      </p>}
-      {<p>
+      </div>}
+      {<div>
         <b>Обо мне: </b>
         <Field
           name="aboutMe"
           component={Textarea}
           type="text"
-          placeholder="About me"
+          placeholder="Your skills"
         />
-      </p>}
-      {contacts}
-      {<p>
-        <b>Работа: </b>
+      </div>}
+      {<div>
+        <b>Ищу ли работу?: </b>
+        <Field
+          id="lookingForAJob"
+          name="lookingForAJob"
+          component={Input}
+          type="checkbox"
+        />
+      </div>}
+      {<div>
+        <b>Навыки: </b>
         <Field
           name="lookingForAJobDescription"
-          component={Input}
+          component={Textarea}
           type="text"
-          placeholder="About your work"
+          placeholder="Describe the dream job"
         />
-      </p>}
-      {error && <div className={errorStyle.formSummaryError}>{error.map(item => <div>{item}</div>)}</div>}
-      <button type="submit" disabled={isUpdating}>Confirm</button>
+      </div>}
+      <b>Contacts:</b>
+      {contacts}
+      <button type="submit" disabled={isUpdating}>Save</button>
+      <button type="button" disabled={isUpdating} onClick={cancelEditing}>Cancel</button>
     </form>
-  )
+    {error && <><div className={errorStyle.formSummaryError}>{error.map(item => <div>{item}</div>)}</div></>}
+  </>
 }
 
-export default reduxForm({ form: 'profile', onSubmitSuccess: resetForm('profile') })(ProfileDataForm)
+export default reduxForm({ form: 'profileData' })(ProfileDataForm)

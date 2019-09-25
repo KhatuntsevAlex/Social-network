@@ -12,8 +12,9 @@ const ProfileData = ({
     {isOwner && <button type="button" onClick={() => { setEditeMode(true) }}>Edit</button>}
     {profile.fullName && <div><strong>Full name: <i>{profile.fullName}</i></strong></div>}
     {profile.aboutMe && <div><b>Обо мне: </b>{profile.aboutMe}</div>}
+    <div><b>Ищу ли работу?: </b>{profile.lookingForAJob ? 'Да' : 'Нет'}</div>
+    {profile.lookingForAJobDescription && <div><b>Работа мечты: </b>{profile.lookingForAJobDescription}</div>}
     <div><b>Contacts:</b> <div className={s.contacts}>{contacts}</div></div>
-    {profile.lookingForAJobDescription && <div><b>Работа: </b>{profile.lookingForAJobDescription}</div>}
   </>
 }
 

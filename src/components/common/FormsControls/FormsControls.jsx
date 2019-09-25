@@ -21,41 +21,8 @@ export const Textarea = (props) => {
 
 export const Input = (props) => {
   const { input, meta, ...restProps } = props
-  return <FormControl {...props}><input {...input} {...restProps} /></FormControl>
+  return <FormControl {...props}>
+    <input {...input} {...restProps} />
+    {restProps.id && restProps.type === 'checkbox' && <label htmlFor={restProps.id} />}
+  </FormControl>
 }
-
-
-
-/* export const Textarea = ({
-  input,
-  meta: { touched, error, warning },
-  ...props }) => {
-  const hasError = error && touched
-  return (
-    <div>
-      <div className={`${s.formControl} ${hasError && s.error}`}>
-        <textarea {...input} {...props} />
-      </div>
-      <div>
-        {hasError && <span>{error}</span>}
-      </div>
-    </div>
-  )
-}
-
-export const Input = ({
-  input,
-  meta: { touched, error, warning },
-  ...props }) => {
-  const hasError = error && touched
-  return (
-    <div>
-      <div className={`${s.formControl} ${hasError && s.error}`}>
-        <input {...input} {...props} />
-      </div>
-      <div>
-        {hasError && <span>{error}</span>}
-      </div>
-    </div>
-  )
-} */

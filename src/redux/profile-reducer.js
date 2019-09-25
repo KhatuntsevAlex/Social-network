@@ -117,13 +117,23 @@ export const updatePhoto = photo => async (dispatch) => {
 
 export const updateInfo = infoData => async (dispatch, getState) => {
   const {id} = getState().auth
-  const data = await profileAPI.updateInfo(infoData)
-    if(data.resultCode === 0){
+  const {resultCode, messages} = await profileAPI.updateInfo(infoData)
+    if(resultCode === 0){
       return dispatch(getUserProfile(id)) 
-    }
-      /* const fieldReg = /\>([^&]*)\)/
-const errorReg = /([^&]*)\s\(/ */
-      const errorMessage = data.messages.length > 0 ? data.messages : 'Wrong field'
-      dispatch(stopSubmit('profile', {_error: errorMessage}))
-    
+    }       
+  const getObjFromContactsErrors = errorsArray => {
+    const contactReg = />([^&]*)\)/ // get all between '>' and ')'
+    const errorReg = /^([^&]*)\s\(/ // get all from start of a string to '_('    
+    const obj = {}
+    errorsArray.forEach(contact => {     
+      const [,contactNameWithCapital] = contact.match(contactReg)
+      const contactName = contactNameWithCapital.slice(0,1).toLowerCase() + contactNameWithCapital.slice(1)
+      const [,errorText] = contact.match(errorReg)
+      obj[contactName] = errorText
+    })
+    return obj
+  }
+      dispatch(stopSubmit('profileData', {'contacts': getObjFromContactsErrors(messages)}))
+      return  Promise.reject(messages)
 }
+
