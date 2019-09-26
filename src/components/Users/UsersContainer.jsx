@@ -16,7 +16,7 @@ const UsersContainer = props => {
   const { currentPage, pageSize, isFetching, ...funcs } = props
   useEffect(() => {
     funcs.getUsers(currentPage, pageSize)
-  }, [currentPage, pageSize, funcs])
+  }, [currentPage, pageSize])
 
   const onPageChanged = (p) => {
     funcs.getUsers(p, pageSize)

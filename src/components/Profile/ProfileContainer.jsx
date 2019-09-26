@@ -12,7 +12,7 @@ class ProfileContainer extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.match.params.userId !== this.props.match.params.userId)
+    if (prevProps.match.params.userId !== this.props.match.params.userId || prevProps.isAuth !== this.props.isAuth)
       this.refreshProfile()
   }
 
