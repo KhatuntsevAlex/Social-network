@@ -1,20 +1,10 @@
 import React, { lazy, Suspense } from 'react'
-import { Route, withRouter } from 'react-router-dom'
+import { Route, withRouter, Switch, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import './App.css'
 import Header from './components/Header/Header'
-/* import News from './components/News/News'
-import Settings from './components/Settings/Settings' */
-/* import DialogsContainer from './components/Dialogs/DialogsContainer'
- */
 import NavbarContainer from './components/Navbar/NavbarContainer'
-/* import UsersContainer from './components/Users/UsersContainer'
- */
-/* import MusicContainer from './components/Music/MusicContainer'
- */
-/* import ProfileContainer from './components/Profile/ProfileContainer'
- */
 import Login from './components/Login/Login'
 import { initializeApp } from './redux/app-reduser'
 import Preloader from './components/common/Preloader/Preloader'
@@ -25,17 +15,6 @@ const MusicContainer = lazy(() => import('./components/Music/MusicContainer'))
 const UsersContainer = lazy(() => import('./components/Users/UsersContainer'))
 const Settings = lazy(() => import('./components/Settings/Settings'))
 const News = lazy(() => import('./components/News/News'))
-
-/* Для перехода между частями своего
-  приложения заключаем весь ретурн
-  в <BrowserRouter></BrowserRouter>,
-  а внутри тег
-<Route path="куда ведет ссылка" component={что отображать}/> */
-
-/* чтоб работало нужно установить router в папку
-  с приложением через node.js command prompt:
-  npm i react-router-dom -save
-  и потом прописать импорты - смотр1и вверху */
 
 class App extends React.Component {
   componentDidMount() {
@@ -51,18 +30,19 @@ class App extends React.Component {
         <Header />
         <NavbarContainer />
         <div className="app-wrapper-content">
-          {/* <Redirect to="/profile" /> */}
           <Suspense fallback={<Preloader />}>
-            <Route exact path="/" render={() => <ProfileContainer />} />
-            <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
-            <Route path="/dialogs" render={() => <DialogsContainer />} />
-            <Route path="/users" render={() => <UsersContainer />} />
-            <Route path="/music" render={() => <MusicContainer />} />
-            <Route path="/news" render={() => <News />} />
-            <Route path="/settings" render={() => <Settings />} />
+            <Switch>
+              <Route exact path="/" render={() => <Redirect to="/profile" />} />
+              <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
+              <Route path="/dialogs" render={() => <DialogsContainer />} />
+              <Route path="/users" render={() => <UsersContainer />} />
+              <Route path="/music" render={() => <MusicContainer />} />
+              <Route path="/news" render={() => <News />} />
+              <Route path="/settings" render={() => <Settings />} />
+              <Route path="*" render={() => <div>404 NOT FOUND</div>} />
+            </Switch>
           </Suspense>
           <Route path="/login" render={() => <Login />} />
-
         </div>
       </div>
     )

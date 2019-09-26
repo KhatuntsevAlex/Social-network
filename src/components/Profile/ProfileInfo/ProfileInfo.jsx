@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, lazy } from 'react'
 import { connect } from 'react-redux'
 import { updateStatus, updatePhoto, updateInfo } from '../../../redux/profile-reducer'
 import Preloader from '../../common/Preloader/Preloader'
@@ -6,8 +6,10 @@ import ProfileStatus from './ProfileStatus'
 import userPhoto from '../../../assets/images/userLogo.png'
 import ProfilePhoto from './ProfilePhoto'
 import ProfileData from './ProfileData'
-import ProfileDataForm from './ProfileDataForm'
-import s from './ProfileInfo.module.css'
+/* import ProfileDataForm from './ProfileDataForm'
+ */import s from './ProfileInfo.module.css'
+
+const ProfileDataForm = lazy(() => import('./ProfileDataForm'))
 
 const ProfileInfo = React.memo(({ profile, status, isOwner, ...funcs }) => {
   const [isEditeMode, setEditeMode] = useState(false)

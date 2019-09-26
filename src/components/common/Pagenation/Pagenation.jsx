@@ -22,6 +22,7 @@ const Pagenation = ({
   }
   const prevPage = currentPage - 1
   const nextPage = currentPage + 1
+  const stepSize = 10 // number of skipped pages 
 
   return (
     <nav aria-label="...">
@@ -29,7 +30,13 @@ const Pagenation = ({
         <NextPrewButton
           page={1}
           onPageChanged={onPageChanged}
-          text="<<"
+          text="<<<"
+          disabled={currentPage <= 1}
+        />
+        <NextPrewButton
+          page={(currentPage - stepSize) < 1 ? 1 : (currentPage - stepSize)}
+          onPageChanged={onPageChanged}
+          text={`<<`}
           disabled={currentPage <= 1}
         />
         <NextPrewButton
@@ -62,9 +69,15 @@ const Pagenation = ({
           disabled={currentPage >= pageCount}
         />
         <NextPrewButton
+          page={(currentPage + stepSize) > pageCount ? pageCount : (currentPage + stepSize)}
+          onPageChanged={onPageChanged}
+          text={`>>`}
+          disabled={currentPage >= pageCount}
+        />
+        <NextPrewButton
           page={pageCount}
           onPageChanged={onPageChanged}
-          text=">>"
+          text=">>>"
           disabled={currentPage >= pageCount}
         />
       </ul>
