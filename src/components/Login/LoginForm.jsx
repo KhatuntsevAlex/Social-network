@@ -6,9 +6,10 @@ import { resetForm } from '../../utils/helpers/resetFormAfterSubmit'
 import s from '../common/FormsControls/FormsControls.module.css'
 
 const maxLength30 = maxLength(30)
+const maxLength8 = maxLength(8)
 const minLength8 = minLength(8)
 
-const LoginForm = ({ handleSubmit, error }) => (
+const LoginForm = ({ handleSubmit, error, captchaUrl, onRefreshCaptcha }) => (
   <form onSubmit={handleSubmit}>
     <div>
       <Field
@@ -28,10 +29,24 @@ const LoginForm = ({ handleSubmit, error }) => (
     </div>
     <div>
       <Field
+        id="rememberMe"
         name="rememberMe"
         component={Input}
         type="checkbox" /> remember me
         </div>
+    {captchaUrl && <>
+      <img src={captchaUrl} alt="captcha" />
+      <button type="button" onClick={onRefreshCaptcha}>Refresh</button>
+      <div>
+        <Field
+          name="captcha"
+          component={Input}
+          type="text"
+          placeholder="Enter simbols"
+          validate={[required, maxLength8]} />
+      </div>
+    </>
+    }
     {error && <div className={s.formSummaryError}>{error}</div>}
     <div>
       <button type="submit">Login</button>

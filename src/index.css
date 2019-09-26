@@ -17,6 +17,7 @@ code {
 
 /*CHECKBOX STYLING*/
 
+/* 
 input[type="checkbox"]:checked, input[type="checkbox"]:not(:checked) {
   display: none;
 }
@@ -24,8 +25,7 @@ input[type="checkbox"]:checked, input[type="checkbox"]:not(:checked) {
 input[type="checkbox"]:checked+label, input[type="checkbox"]:not(:checked)+label {
   display: inline-block;
   position: relative;
-  /*   padding-left: 35px;
- */
+  
   line-height: 20px;
   cursor: pointer;
 }
@@ -83,6 +83,6 @@ input[type="checkbox"]:checked+label {
 
 input[type="checkbox"]+label {
   margin-right: 10px;
-}
+} */
 
 /*END OF CHECKBOX STYLING*/
