@@ -17,9 +17,22 @@ const Settings = lazy(() => import('./components/Settings/Settings'))
 const News = lazy(() => import('./components/News/News'))
 
 class App extends React.Component {
+
   componentDidMount() {
     // eslint-disable-next-line react/destructuring-assignment
     this.props.initializeApp()
+    window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors)
+  }
+
+  componentWillUnmount() {
+    // eslint-disable-next-line react/destructuring-assignment    
+    window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors)
+  }
+
+  // Перехватчик неперехваченных ошибок
+  catchAllUnhandledErrors = ({ reason, promise }) => {
+    alert('Some error occured')
+    console.log(reason)
   }
 
   render() {
@@ -39,7 +52,7 @@ class App extends React.Component {
               <Route path="/music" render={() => <MusicContainer />} />
               <Route path="/news" render={() => <News />} />
               <Route path="/settings" render={() => <Settings />} />
-              <Route path="*" render={() => <div>404 NOT FOUND</div>} />
+              <Route render={() => <div>404 NOT FOUND</div>} />
             </Switch>
           </Suspense>
           <Route path="/login" render={() => <Login />} />

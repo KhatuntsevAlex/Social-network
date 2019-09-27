@@ -103,16 +103,22 @@ export const getStatus = id => async (dispatch) => {
       dispatch(setStatus(data))    
 }
 
-export const updateStatus = status => async (dispatch) => {
-  const data = await profileAPI.updateStatus(status)    
-      if(data.resultCode === 0)
-      dispatch(setStatus(status))    
+export const updateStatus = status => async (dispatch) => {      
+  try {
+    const {data}= await profileAPI.updateStatus(status)
+    if(data.resultCode === 0) {
+      dispatch(setStatus(status))
+    }      
+  } catch (error) {
+    // TODO: something with error or else
+  }
 }
 
-export const updatePhoto = photo => async (dispatch) => {
+export const updatePhoto = photo => async (dispatch) => {  
   const data = await profileAPI.updatePhoto(photo)
-      if(data.resultCode === 0)
-      dispatch(setPhotos(data.data.photos))  
+  if(data.resultCode === 0)
+    dispatch(setPhotos(data.data.photos))   
+  
 }
 
 export const updateInfo = infoData => async (dispatch, getState) => {
